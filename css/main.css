@@ -12,6 +12,10 @@ body {
     font-family: montse;
 }
 
+img {
+    max-width: 100%;
+}
+
 
 /* header */
 
@@ -74,34 +78,105 @@ body {
 }
 
 
+/* main-container */
+
+
 /* Gallery */
 
+.main-content.edit-mode .main-gallery {
+    display: none;
+}
+
 .main-gallery {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     gap: 30px;
-    margin: 15px;
+    margin: 15px 50px;
 }
 
 .gallery-item {
     border-radius: 12px;
     object-fit: cover;
-    height: 6rem;
-    max-width: 100%;
+    height: 10rem;
+    transition: opacity 0.3s;
 }
 
-.main-content.edit-mode .main-gallery {
-    display: none;
+.gallery-item:hover {
+    opacity: 0.55;
 }
 
 
 /* Canvas editor */
 
 .main-editor {
+    background-color: rgb(241, 237, 226);
+    width: 100%;
     display: none;
+    padding: 2rem 4rem;
 }
 
 .main-content.edit-mode .main-editor {
     display: flex;
+}
+
+.canvas-controls {
+    margin: 0 6.25rem;
+}
+
+.canvas-controls input,
+.change-txt-deco-btns select {
+    padding: 0.35rem 0;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    outline: none;
+    text-align: center;
+}
+
+.change-pos-btns,
+.change-txt-btns {
+    margin-top: 1.125rem;
+}
+
+.change-pos-btns :not(:last-child),
+.change-txt-btns :not(:last-child) {
+    margin-right: 0.65rem;
+}
+
+.control-btn,
+.change-txt-btn {
+    margin-top: 1.125rem;
+    width: 59px;
+    height: 59px;
+}
+
+.change-txt-deco-btns select {
+    width: 12.825rem;
+    margin-bottom: 2.25rem;
+}
+
+.s-color-btn {
+    background: url(../img/ICONS/text\ stroke.png) cover;
+}
+
+input[type="color"] {
+    margin-left: 0.65rem;
+}
+
+
+/* Footer */
+
+.main-footer {
+    background-color: #ff8f03;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-footer small {
+    text-align: center;
+    padding: 2rem;
 }
 
 

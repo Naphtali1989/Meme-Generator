@@ -38,35 +38,38 @@
             </div>
         </section>
 
-        <div class="main-content-container">
-            <section class="main-gallery grid">
+        <div class="main-content-container flex column">
 
+            <section class="main-gallery grid">
             </section>
+
             <section class="main-editor">
 
                 <canvas id="my-canvas" width="500" height="500"></canvas>
 
-                <div class="canvas-controls">
-                    <input type="text" onchange="onEditText(this.value)" oninput="onEditText(this.value)" placeholder="Make your meme!">
+                <div class="canvas-controls flex column">
+                    <input type="text" name="editor-text" onchange="onEditText(this.value)" oninput="onEditText(this.value)" placeholder="Make your meme!">
                     <section class="change-pos-btns">
-                        <button class="clean-btn btn control-btn" onclick="onChangePosY(-1)">↑</button>
+                        <button class="clean-btn btn control-btn" onclick="onChangePosY(-1)"><img src="" alt=""></button>
                         <button class="clean-btn btn control-btn" onclick="onChangePosY(1)">↓</button>
-                        <button class="clean-btn btn control-btn" onclick="onChangeLines(1)">⇅</button>
-                        <button class="clean-btn btn control-btn" onclick="onAddLine()">+</button>
-                        <button class="clean-btn btn control-btn" onclick="onDeleteLine()">delete</button>
+                        <button class="clean-btn btn control-btn" onclick="onChangeLines(1)"><img src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
+                        <button class="clean-btn btn control-btn" onclick="onAddLine()"><img src="img/ICONS/add.png" alt=""></button>
+                        <button class="clean-btn btn control-btn" onclick="onDeleteLine()"><img src="img/ICONS/trash.png" alt=""></button>
                     </section>
-                    <section class="clean-btn btn change-txt-btns">
-                        <button class="clean-btn btn change-text-btn" onclick="onChangeFontSize(1)">A+</button>
-                        <button class="clean-btn btn change-text-btn" onclick="onChangeFontSize(-1)">A-</button>
-                        <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('left')">left align</button>
-                        <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('center')">center align</button>
-                        <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('right')">right align</button>
+                    <section class="change-txt-btns">
+                        <button class="clean-btn btn change-txt-btn" onclick="onChangeFontSize(1)"><img src="img/ICONS/increase font - icon.png" alt=""></button>
+                        <button class="clean-btn btn change-txt-btn" onclick="onChangeFontSize(-1)"><img src="img/ICONS/decrease font - icon.png" alt=""></button>
+                        <button class="clean-btn btn change-txt-btn" onclick="onChangeAlign('left')"><img src="img/ICONS/align-to-left.png" alt=""></button>
+                        <button class="clean-btn btn change-txt-btn" onclick="onChangeAlign('center')"><img src="img/ICONS/center-text-alignment.png" alt=""></button>
+                        <button class="clean-btn btn change-txt-btn" onclick="onChangeAlign('right')"><img src="img/ICONS/align-to-right.png" alt=""></button>
+                    </section>
+                    <section class="change-txt-deco-btns">
                         <select name="font-family" id="font-family-picker" onchange="onChangeFontFam(this.value)">
-                        <option value="Impact">Impact</option>
-                        <option value="Ariel">Ariel</option>
-                    </select>
-                        <input type="color" class="clean-btn btn change-text-btn" onchange="onChangeSColor(this.value)">stroke color</button>
-                        <input type="color" class="clean-btn btn change-text-btn" onchange="onChangeFColor(this.value)">font color</button>
+                            <option value="Impact">Impact</option>
+                            <option value="Ariel">Ariel</option>
+                        </select>
+                        <input type="color" class="clean-btn btn change-txt-btn s-color-btn" onchange="onChangeSColor(this.value)"></button>
+                        <input type="color" class="clean-btn btn change-txt-btn f-color-btn" onchange="onChangeFColor(this.value)"></button>
                     </section>
                     <section class="sticker-picker">
                         <!-- WIP - bonus -->
@@ -81,7 +84,7 @@
         </div>
 
     </main>
-    <footer class="main-footer">
+    <footer class="main-footer flex">
         <small>Made by Naphtali Rubin - Ninja programming cadet at the Coding Academy &copy;</small>
     </footer>
 

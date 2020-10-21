@@ -49,15 +49,15 @@
                     <button class="clean-btn btn control-btn" onclick="onChangePosY(-1)">↑</button>
                     <button class="clean-btn btn control-btn" onclick="onChangePosY(1)">↓</button>
                     <button class="clean-btn btn control-btn" onclick="onChangeLines(1)">⇅</button>
-                    <button class="clean-btn btn control-btn">+</button>
-                    <button class="clean-btn btn control-btn">delete</button>
+                    <button class="clean-btn btn control-btn" onclick="onAddLine()">+</button>
+                    <button class="clean-btn btn control-btn" onclick="onDeleteLine()">delete</button>
                 </section>
                 <section class="clean-btn btn change-txt-btns">
                     <button class="clean-btn btn change-text-btn" onclick="onChangeFontSize(1)">A+</button>
                     <button class="clean-btn btn change-text-btn" onclick="onChangeFontSize(-1)">A-</button>
-                    <button class="clean-btn btn change-text-btn">left align</button>
-                    <button class="clean-btn btn change-text-btn">center align</button>
-                    <button class="clean-btn btn change-text-btn">right align</button>
+                    <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('left')">left align</button>
+                    <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('center')">center align</button>
+                    <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('right')">right align</button>
                     <button class="clean-btn btn change-text-btn">stroke color</button>
                     <button class="clean-btn btn change-text-btn">font color</button>
                 </section>

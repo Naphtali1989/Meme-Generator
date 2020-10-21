@@ -35,7 +35,13 @@ function onDrawText(align, x, y) {
     gCtx.textAlign = align;
     gCtx.fillText(getMemeText(), x, y)
     gCtx.strokeText(getMemeText(), x, y)
-        // drawTextOutline();
+}
+
+function drawTextOutline(x, y, fontSize) {
+    gCtx.beginPath()
+    gCtx.rect(x + 5, y + 5, 450, fontSize + 5)
+    gCtx.strokeStyle = 'black'
+    gCtx.stroke()
 }
 
 function onEditText(val) {
@@ -55,4 +61,20 @@ function onChangePosY(diff) {
 
 function onChangeLines(diff) {
     changeLines(diff);
+    // drawTextOutline(x, y, getMemeFontSize());
+}
+
+function onAddLine() {
+    addLine();
+    onDrawMeme();
+}
+
+function onDeleteLine() {
+    deleteLine();
+    onDrawMeme();
+}
+
+function onChangeAlign(dir) {
+    changeAlign(dir);
+    onDrawMeme();
 }

@@ -14,7 +14,7 @@ var gMeme = {
         posY: 50,
         isDragable: false
     }, {
-        txt: 'I am the mid',
+        txt: 'but when i do',
         lineWidth: 1,
         size: 48,
         font: 'Impact',
@@ -24,7 +24,7 @@ var gMeme = {
         posY: 250,
         isDragable: false
     }, {
-        txt: 'I might be ended',
+        txt: 'i eat schwarma!',
         lineWidth: 1,
         size: 48,
         font: 'Impact',
@@ -37,7 +37,6 @@ var gMeme = {
 };
 
 function getAlign() {
-    console.log(gMeme.lines[gMeme.selectedLineIdx])
     switch (gMeme.lines[gMeme.selectedLineIdx].align) {
         case 'left':
             return { dir: 'start', posX: 10, posY: gMeme.lines[gMeme.selectedLineIdx].posY };
@@ -67,22 +66,28 @@ function changeFontSize(diff) {
 
 function changePosY(diff) {
     gMeme.lines[gMeme.selectedLineIdx].posY += diff;
-    console.log(gMeme.lines[gMeme.selectedLineIdx].posY)
 }
 
 function changeLines(diff) {
-    console.log('this is the line index:', gMeme.selectedLineIdx)
     if (gMeme.selectedLineIdx + diff >= gMeme.lines.length) {
         gMeme.selectedLineIdx = -1;
     }
     gMeme.selectedLineIdx += diff;
 }
 
+function addLine() {
+    var sample = (gMeme.lines.length === 0) ? _createNewMemeLine() : JSON.parse(JSON.stringify(gMeme.lines[gMeme.selectedLineIdx]));
+    sample.txt = 'New Line!'
+    gMeme.lines.push(sample);
+}
 
+function deleteLine() {
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+}
 
-
-
-
+function changeAlign(dir) {
+    gMeme.lines[gMeme.selectedLineIdx].align = dir;
+}
 
 
 
@@ -110,4 +115,21 @@ function getMemeFontFam() {
 
 function getMemeFontSize() {
     return gMeme.lines[gMeme.selectedLineIdx].size;
+}
+
+
+
+// Private functions. please do not touch
+function _createNewMemeLine() {
+    return {
+        txt: 'I never eat falafel',
+        lineWidth: 1,
+        size: 48,
+        font: 'Impact',
+        align: 'center',
+        color: 'red',
+        fillColor: 'white',
+        posY: 50,
+        isDragable: false
+    }
 }

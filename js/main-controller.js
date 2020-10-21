@@ -21,3 +21,7 @@ function renderGallery() {
 function onOpenEditor(imgId) {
     initEditor(imgId);
 }
+
+function onEditText(value) {
+    editText(value);
+}

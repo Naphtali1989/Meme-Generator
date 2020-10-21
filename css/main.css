@@ -10,15 +10,15 @@ body {
 /* Gallery */
 
 .main-gallery {
-    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 15px;
 }
 
 .gallery-item {
-    margin: 15px;
     border-radius: 12px;
     object-fit: cover;
-    max-height: 100%;
+    max-width: 50%;
 }
 
 

@@ -26,7 +26,7 @@ function _createImg(url, keywords) {
 
 function _createImgs() {
     var imgs = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < 18; i++) {
         imgs.push(_createImg(`img/meme-imgs/${i+1}.jpg`, ['happy']));
     }
     return imgs;

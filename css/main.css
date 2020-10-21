@@ -5,3 +5,30 @@
 body {
     margin: 0;
 }
+
+
+/* Helpers */
+
+.grid {
+    display: grid;
+}
+
+.clean-list {
+    list-style-type: none;
+}
+
+.clean-link {
+    text-decoration: none;
+}
+
+.clean-link:visited {
+    color: initial;
+}
+
+.clean-btn {
+    outline: none;
+}
+
+.btn {
+    cursor: pointer;
+}

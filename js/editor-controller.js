@@ -18,6 +18,13 @@ function onInitEditor(id) {
 function onDrawMeme() {
     var elImg = document.querySelector(`.item-${getCurrMeme()}`);
     gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height);
+
+    var linesNum = getLinesAmount();
+    for (let i = 0; i < linesNum; i++) {
+        var align = getAlign();
+        onDrawText(align.dir, align.posX, align.posY);
+        onChangeLines(1);
+    }
 }
 
 function onDrawText(align, x, y) {
@@ -28,31 +35,24 @@ function onDrawText(align, x, y) {
     gCtx.textAlign = align;
     gCtx.fillText(getMemeText(), x, y)
     gCtx.strokeText(getMemeText(), x, y)
-}
-
-function drawCurrMeme() {
-    var align = getAlign();
-    onDrawMeme();
-    onDrawText(align.dir, align.posX, align.posY);
+        // drawTextOutline();
 }
 
 function onEditText(val) {
     editText(val);
-    drawCurrMeme();
+    onDrawMeme();
 }
 
 function onChangeFontSize(diff) {
     changeFontSize(diff);
-    drawCurrMeme();
+    onDrawMeme();
 }
 
 function onChangePosY(diff) {
     changePosY(diff);
-    drawCurrMeme();
+    onDrawMeme();
 }
 
 function onChangeLines(diff) {
     changeLines(diff);
-    var align = getAlign();
-    onDrawText(align.dir, align.posX, align.posY);
 }

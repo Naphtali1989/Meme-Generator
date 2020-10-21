@@ -53,6 +53,10 @@ function getCurrMeme(id) {
     return gMeme.selectedImgId;
 }
 
+function getLinesAmount() {
+    return gMeme.lines.length
+}
+
 function editText(val) {
     gMeme.lines[gMeme.selectedLineIdx].txt = val;
 }

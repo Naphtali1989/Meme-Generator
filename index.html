@@ -46,15 +46,15 @@
             <div class="canvas-controls">
                 <input type="text" onchange="onEditText(this.value)" oninput="onEditText(this.value)">
                 <section class="change-pos-btns">
-                    <button class="clean-btn btn control-btn" onclick="onChangeFontSize('1')">↑</button>
-                    <button class="clean-btn btn control-btn">↓</button>
-                    <button class="clean-btn btn control-btn">⇅</button>
+                    <button class="clean-btn btn control-btn" onclick="onChangePosY(-1)">↑</button>
+                    <button class="clean-btn btn control-btn" onclick="onChangePosY(1)">↓</button>
+                    <button class="clean-btn btn control-btn" onclick="onChangeLines(1)">⇅</button>
                     <button class="clean-btn btn control-btn">+</button>
                     <button class="clean-btn btn control-btn">delete</button>
                 </section>
                 <section class="clean-btn btn change-txt-btns">
-                    <button class="clean-btn btn change-text-btn">A+</button>
-                    <button class="clean-btn btn change-text-btn">A-</button>
+                    <button class="clean-btn btn change-text-btn" onclick="onChangeFontSize(1)">A+</button>
+                    <button class="clean-btn btn change-text-btn" onclick="onChangeFontSize(-1)">A-</button>
                     <button class="clean-btn btn change-text-btn">left align</button>
                     <button class="clean-btn btn change-text-btn">center align</button>
                     <button class="clean-btn btn change-text-btn">right align</button>
@@ -79,6 +79,7 @@
     <script src="js/services/util-service.js"></script>
     <script src="js/services/gallery-service.js"></script>
     <script src="js/services/editor-service.js"></script>
+    <script src="js/editor-controller.js"></script>
     <script src="js/main-controller.js"></script>
 </body>
 

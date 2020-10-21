@@ -89,6 +89,25 @@ function changeAlign(dir) {
     gMeme.lines[gMeme.selectedLineIdx].align = dir;
 }
 
+function changeSColor(value) {
+    gMeme.lines[gMeme.selectedLineIdx].color = value;
+}
+
+function changeFColor(value) {
+    gMeme.lines[gMeme.selectedLineIdx].fillColor = value;
+}
+
+function changeFontFam(value) {
+    gMeme.lines[gMeme.selectedLineIdx].font = value;
+}
+
+
+
+
+
+
+
+
 
 
 

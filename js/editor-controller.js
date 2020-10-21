@@ -78,3 +78,18 @@ function onChangeAlign(dir) {
     changeAlign(dir);
     onDrawMeme();
 }
+
+function onChangeSColor(value) {
+    changeSColor(value);
+    onDrawMeme();
+}
+
+function onChangeFColor(value) {
+    changeFColor(value);
+    onDrawMeme();
+}
+
+function onChangeFontFam(value) {
+    changeFontFam(value);
+    onDrawMeme();
+}

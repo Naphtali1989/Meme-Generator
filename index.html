@@ -58,8 +58,12 @@
                     <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('left')">left align</button>
                     <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('center')">center align</button>
                     <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('right')">right align</button>
-                    <button class="clean-btn btn change-text-btn">stroke color</button>
-                    <button class="clean-btn btn change-text-btn">font color</button>
+                    <select name="font-family" id="font-family-picker" onchange="onChangeFontFam(this.value)">
+                        <option value="Impact">Impact</option>
+                        <option value="Ariel">Ariel</option>
+                    </select>
+                    <input type="color" class="clean-btn btn change-text-btn" onchange="onChangeSColor(this.value)">stroke color</button>
+                    <input type="color" class="clean-btn btn change-text-btn" onchange="onChangeFColor(this.value)">font color</button>
                 </section>
                 <section class="sticker-picker">
                     <!-- WIP - bonus -->

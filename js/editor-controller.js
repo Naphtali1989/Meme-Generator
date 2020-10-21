@@ -2,6 +2,8 @@
 
 var gCanvas;
 var gCtx;
+var gCurrIdx = 0;
+var gCurrPos;
 
 
 function openEditor() {
@@ -26,7 +28,9 @@ function onDrawMeme() {
 
     var linesNum = getLinesAmount();
     for (let i = 0; i < linesNum; i++) {
+        var selectedLine = getCurrSelectedLine();
         var align = getAlign();
+        if (selectedLine === gCurrIdx) drawTextOutline();
         onDrawText(align.dir, align.posX, align.posY);
         onChangeLines(1);
     }
@@ -40,33 +44,43 @@ function onDrawText(align, x, y) {
     gCtx.textAlign = align;
     gCtx.fillText(getMemeText(), x, y)
     gCtx.strokeText(getMemeText(), x, y)
+
 }
 
-function drawTextOutline(x, y, fontSize) {
-    gCtx.beginPath()
-    gCtx.rect(x + 5, y + 5, 450, fontSize + 5)
-    gCtx.strokeStyle = 'black'
-    gCtx.stroke()
+function drawTextOutline() {
+    var gCurrPos = getPos();
+    var yLength = gCurrPos.size + 2;
+    var xLength = ((gCurrPos.size / 2) * gCurrPos.length);
+    gCurrPos.x = ((500 - xLength) / gCurrPos.length) + gCurrPos.size;
+    console.log(yLength)
+    console.log(xLength)
+
+    gCtx.beginPath();
+    gCtx.rect(gCurrPos.x, gCurrPos.y - yLength + 5, xLength, yLength);
+    gCtx.strokeStyle = 'black';
+    gCtx.stroke();
 }
 
 function onEditText(val) {
+    getMemeIdx();
     editText(val);
     onDrawMeme();
 }
 
 function onChangeFontSize(diff) {
+    getMemeIdx();
     changeFontSize(diff);
     onDrawMeme();
 }
 
 function onChangePosY(diff) {
+    getMemeIdx();
     changePosY(diff);
     onDrawMeme();
 }
 
 function onChangeLines(diff) {
     changeLines(diff);
-    // drawTextOutline(x, y, getMemeFontSize());
 }
 
 function onAddLine() {
@@ -76,25 +90,43 @@ function onAddLine() {
 
 function onDeleteLine() {
     deleteLine();
+    getMemeIdx();
     onDrawMeme();
 }
 
 function onChangeAlign(dir) {
+    getMemeIdx();
     changeAlign(dir);
     onDrawMeme();
 }
 
 function onChangeSColor(value) {
+    getMemeIdx();
     changeSColor(value);
     onDrawMeme();
 }
 
 function onChangeFColor(value) {
+    getMemeIdx();
     changeFColor(value);
     onDrawMeme();
 }
 
 function onChangeFontFam(value) {
+    getMemeIdx();
     changeFontFam(value);
     onDrawMeme();
 }
+
+function getMemeIdx() {
+    gCurrIdx = getCurrMemeIdx()
+}
+
+function onStartDragging(ev) {
+    checkDragPos(ev);
+    startDragging(ev);
+}
+
+function onDrag(ev) {}
+
+function onStopDragging(ev) {}

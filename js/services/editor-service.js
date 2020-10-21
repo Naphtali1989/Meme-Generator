@@ -12,6 +12,7 @@ var gMeme = {
         color: 'red',
         fillColor: 'white',
         posY: 50,
+        posX: 0,
         isDragable: false
     }, {
         txt: 'but when i do',
@@ -22,6 +23,7 @@ var gMeme = {
         color: 'red',
         fillColor: 'white',
         posY: 250,
+        posX: 0,
         isDragable: false
     }, {
         txt: 'i eat schwarma!',
@@ -32,9 +34,23 @@ var gMeme = {
         color: 'red',
         fillColor: 'white',
         posY: 490,
+        posX: 0,
         isDragable: false
     }]
 };
+
+
+function getCurrSelectedLine() {
+    return gMeme.selectedLineIdx;
+}
+
+function getPos() {
+    var x = gMeme.lines[gMeme.selectedLineIdx].posX;
+    var y = gMeme.lines[gMeme.selectedLineIdx].posY;
+    var length = gMeme.lines[gMeme.selectedLineIdx].txt.length;
+    var size = gMeme.lines[gMeme.selectedLineIdx].size;
+    return { x, y, length, size }
+}
 
 function getAlign() {
     switch (gMeme.lines[gMeme.selectedLineIdx].align) {
@@ -101,6 +117,18 @@ function changeFontFam(value) {
     gMeme.lines[gMeme.selectedLineIdx].font = value;
 }
 
+function getCurrMemeIdx() {
+    return gMeme.selectedLineIdx;
+}
+
+function checkDragPos(ev) {
+    var [x, y] = [ev.offsetX, ev.offsetY];
+    console.log(x, y)
+}
+
+function startDragging(ev) {
+
+}
 
 
 

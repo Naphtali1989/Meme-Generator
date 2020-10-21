@@ -45,13 +45,13 @@
 
             <section class="main-editor">
 
-                <canvas id="my-canvas" width="500" height="500"></canvas>
+                <canvas id="my-canvas" width="500" height="500" onmousedown="onStartDragging(event)" onmousemove="onDrag(event)" onmouseup="onStopDragging(event)" ontouchstart="onHandleTouch(event)" ontouchmove="onDrag(event)"></canvas>
 
                 <div class="canvas-controls flex column">
                     <input type="text" name="editor-text" onchange="onEditText(this.value)" oninput="onEditText(this.value)" placeholder="Make your meme!">
                     <section class="change-pos-btns">
-                        <button class="clean-btn btn control-btn" onclick="onChangePosY(-1)"><img src="" alt=""></button>
-                        <button class="clean-btn btn control-btn" onclick="onChangePosY(1)">↓</button>
+                        <button class="clean-btn btn control-btn" onclick="onChangePosY(-1)"><img src="img/ICONS/up-arrow.png" alt=""></button>
+                        <button class="clean-btn btn control-btn" onclick="onChangePosY(1)"><img src="img/ICONS/down-arrow.png" alt=""></button>
                         <button class="clean-btn btn control-btn" onclick="onChangeLines(1)"><img src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
                         <button class="clean-btn btn control-btn" onclick="onAddLine()"><img src="img/ICONS/add.png" alt=""></button>
                         <button class="clean-btn btn control-btn" onclick="onDeleteLine()"><img src="img/ICONS/trash.png" alt=""></button>

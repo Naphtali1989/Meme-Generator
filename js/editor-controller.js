@@ -30,7 +30,7 @@ function onDrawMeme() {
     for (let i = 0; i < linesNum; i++) {
         var selectedLine = getCurrSelectedLine();
         var align = getAlign();
-        if (selectedLine === gCurrIdx) drawTextOutline();
+        // if (selectedLine === gCurrIdx) drawTextOutline();
         onDrawText(align.dir, align.posX, align.posY);
         onChangeLines(1);
     }
@@ -42,24 +42,22 @@ function onDrawText(align, x, y) {
     gCtx.lineWidth = getMemeLineWidth();
     gCtx.font = `${getMemeFontSize()}px ${getMemeFontFam()}`;
     gCtx.textAlign = align;
-    gCtx.fillText(getMemeText(), x, y)
-    gCtx.strokeText(getMemeText(), x, y)
+    gCtx.fillText(getMemeText(), x, y);
+    gCtx.strokeText(getMemeText(), x, y);
 
 }
 
-function drawTextOutline() {
-    var gCurrPos = getPos();
-    var yLength = gCurrPos.size + 2;
-    var xLength = ((gCurrPos.size / 2) * gCurrPos.length);
-    gCurrPos.x = ((500 - xLength) / gCurrPos.length) + gCurrPos.size;
-    console.log(yLength)
-    console.log(xLength)
+// function drawTextOutline() {
+//     var gCurrPos = getPos();
+//     var yLength = gCurrPos.size + 2;
+//     var xLength = ((gCurrPos.size) * gCurrPos.length) - (gCanvas.width / gCurrPos.size);
+//     gCurrPos.x = ((500 - xLength) / gCurrPos.length) + gCurrPos.size;
 
-    gCtx.beginPath();
-    gCtx.rect(gCurrPos.x, gCurrPos.y - yLength + 5, xLength, yLength);
-    gCtx.strokeStyle = 'black';
-    gCtx.stroke();
-}
+//     gCtx.beginPath();
+//     gCtx.rect(gCurrPos.x, gCurrPos.y - yLength + 5, xLength, yLength);
+//     gCtx.strokeStyle = 'black';
+//     gCtx.stroke();
+// }
 
 function onEditText(val) {
     getMemeIdx();
@@ -130,3 +128,10 @@ function onStartDragging(ev) {
 function onDrag(ev) {}
 
 function onStopDragging(ev) {}
+
+function onDownloadCanvas(elLink) {
+    onDrawMeme();
+    const data = gCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'meme.jpg';
+}

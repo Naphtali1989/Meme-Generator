@@ -69,10 +69,11 @@ function getCurrMeme(id) {
 }
 
 function getLinesAmount() {
-    return gMeme.lines.length
+    return gMeme.lines.length;
 }
 
 function editText(val) {
+    if (gMeme.lines.length === 0) return;
     gMeme.lines[gMeme.selectedLineIdx].txt = val;
 }
 
@@ -81,10 +82,12 @@ function changeFontSize(diff) {
 }
 
 function changePosY(diff) {
+    if (gMeme.lines.length === 0) return;
     gMeme.lines[gMeme.selectedLineIdx].posY += diff;
 }
 
 function changeLines(diff) {
+    if (gMeme.lines.length === 0) return;
     if (gMeme.selectedLineIdx + diff >= gMeme.lines.length) {
         gMeme.selectedLineIdx = -1;
     }
@@ -93,15 +96,19 @@ function changeLines(diff) {
 
 function addLine() {
     var sample = (gMeme.lines.length === 0) ? _createNewMemeLine() : JSON.parse(JSON.stringify(gMeme.lines[gMeme.selectedLineIdx]));
-    sample.txt = 'New Line!'
-    gMeme.lines.push(sample);
+    sample.txt = 'New Line!';
+    gMeme.lines.unshift(sample);
 }
 
 function deleteLine() {
+    if (gMeme.lines.length === 0) return;
     gMeme.lines.splice(gMeme.selectedLineIdx, 1);
+    if (gMeme.selectedLineIdx > 0) changePosY(-1);
+    console.log(gMeme);
 }
 
 function changeAlign(dir) {
+    if (gMeme.lines.length === 0) return;
     gMeme.lines[gMeme.selectedLineIdx].align = dir;
 }
 

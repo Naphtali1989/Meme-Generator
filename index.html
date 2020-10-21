@@ -50,8 +50,8 @@
                 <div class="canvas-controls flex column">
                     <input type="text" name="editor-text" onchange="onEditText(this.value)" oninput="onEditText(this.value)" placeholder="Make your meme!">
                     <section class="change-pos-btns">
-                        <button class="clean-btn btn control-btn" onclick="onChangePosY(-1)"><img src="img/ICONS/up-arrow.png" alt=""></button>
-                        <button class="clean-btn btn control-btn" onclick="onChangePosY(1)"><img src="img/ICONS/down-arrow.png" alt=""></button>
+                        <button class="clean-btn btn control-btn" onclick="onChangePosY(-10)"><img src="img/ICONS/up-arrow.png" alt=""></button>
+                        <button class="clean-btn btn control-btn" onclick="onChangePosY(10)"><img src="img/ICONS/down-arrow.png" alt=""></button>
                         <button class="clean-btn btn control-btn" onclick="onChangeLines(1)"><img src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
                         <button class="clean-btn btn control-btn" onclick="onAddLine()"><img src="img/ICONS/add.png" alt=""></button>
                         <button class="clean-btn btn control-btn" onclick="onDeleteLine()"><img src="img/ICONS/trash.png" alt=""></button>
@@ -77,7 +77,7 @@
                     <section class="social-btns">
                         <button class="btn share-btn">Share</button>
                         <button class="btn save-btn">Save</button>
-                        <button class="btn download-btn">Download</button>
+                        <a href="#" class="btn download-btn" onclick="onDownloadCanvas(this)" download="">Download</button>
                     </section>
                 </div>
             </section>

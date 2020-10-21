@@ -7,6 +7,21 @@ body {
 }
 
 
+/* Gallery */
+
+.main-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    margin: 15px;
+    border-radius: 12px;
+    object-fit: cover;
+    max-height: 100%;
+}
+
+
 /* Helpers */
 
 .grid {

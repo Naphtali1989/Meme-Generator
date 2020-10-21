@@ -1,7 +1,7 @@
 'use strict';
 
 function onInitPage() {
-    console.log('Hi Gallery!')
+
     renderGallery();
 }
 
@@ -10,13 +10,14 @@ function renderGallery() {
     var strHTMLs = imgs.map(img => {
         return `
         <img src="${img.url}"
-        class="gallery-item item-${img.id}" 
+        class="btn gallery-item item-${img.id}" 
         onclick="onOpenEditor('${img.id}')">
-        
         `
     });
     var elGallery = document.querySelector('.main-gallery');
-    console.log(imgs, strHTMLs)
     elGallery.innerHTML = strHTMLs.join('');
+}
 
+function onOpenEditor(imgId) {
+    initEditor(imgId);
 }

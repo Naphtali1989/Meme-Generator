@@ -26,18 +26,19 @@
         </nav>
     </header>
 
-    <main class="main-content">
-        <section class="search-content">
-            <input type="search" name="search-bar" class="search-bar" placeholder="search">
-            <button class="clean-btn btn search-btn" onclick="">Search</button>
-            <div class="search-words">
-
+    <main class="main-content flex column">
+        <section class="search-content flex">
+            <div class="search-bar">
+                <input type="search" name="search-bar" class="search-bar" placeholder="search">
+                <button class="clean-btn btn search-btn" onclick="">Search</button>
             </div>
-            <button class="clean-btn btn show-more-words-btn">More...</button>
+            <div class="search-words">
+                <span>cute</span> <span>happy</span> <span>angry</span>
+                <button class="clean-btn btn show-more-words-btn">More...</button>
+            </div>
         </section>
+
         <div class="main-content-container">
-
-
             <section class="main-gallery grid">
 
             </section>
@@ -79,10 +80,10 @@
             </section>
         </div>
 
-        <footer class="main-footer">
-            <small>Made by Naphtali Rubin - Ninja programming cadet at the Coding Academy &copy;</small>
-        </footer>
     </main>
+    <footer class="main-footer">
+        <small>Made by Naphtali Rubin - Ninja programming cadet at the Coding Academy &copy;</small>
+    </footer>
 
     <script src="js/services/storage-service.js"></script>
     <script src="js/services/util-service.js"></script>

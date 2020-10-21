@@ -1,9 +1,59 @@
+@font-face {
+    font-family: montse;
+    src: url(../fonts/mont/Montserrat-Regular.ttf);
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
+    font-family: montse;
+}
+
+
+/* header */
+
+.main-header {
+    background-color: #ff7f00;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    height: 70px;
+    box-shadow: inset 0 -6px 0 #ff8f03;
+}
+
+.main-logo {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: white;
+}
+
+.main-navbar>* li {
+    padding: 0.75rem 0;
+}
+
+.main-navbar>* a {
+    color: white;
+    padding: 25px;
+    transition: color 0.35s, box-shadow 0.35s;
+}
+
+.main-navbar>* a:hover {
+    color: #000;
+    font-weight: bold;
+    box-shadow: inset 0 -6px 0 rgba(90, 87, 87, 0.75);
+}
+
+.main-navbar>* a:focus {
+    color: #000;
+    font-weight: bold;
+    box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.75);
+}
+
+.main-navbar>* li:not(:last-child) {
+    border-right: 1px solid #8a8a8a;
 }
 
 
@@ -21,6 +71,21 @@ body {
     max-width: 50%;
 }
 
+.main-content.edit-mode .main-gallery {
+    display: none;
+}
+
+
+/* Canvas editor */
+
+.main-editor {
+    display: none;
+}
+
+.main-content.edit-mode .main-editor {
+    display: flex;
+}
+
 
 /* Helpers */
 
@@ -28,12 +93,12 @@ body {
     display: grid;
 }
 
-.clean-list {
-    list-style-type: none;
+.flex {
+    display: flex;
 }
 
-.clean-link {
-    text-decoration: none;
+.clean-list {
+    list-style-type: none;
 }
 
 .clean-link:visited {
@@ -46,4 +111,5 @@ body {
 
 .btn {
     cursor: pointer;
+    text-decoration: none;
 }

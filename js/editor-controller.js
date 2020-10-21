@@ -4,6 +4,11 @@ var gCanvas;
 var gCtx;
 
 
+function openEditor() {
+    var elContainer = document.querySelector('.main-content');
+    elContainer.classList.add('edit-mode')
+}
+
 function onInitCanvas() {
     gCanvas = document.querySelector('#my-canvas');
     gCtx = gCanvas.getContext('2d');

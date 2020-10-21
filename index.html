@@ -9,18 +9,18 @@
 </head>
 
 <body onload="onInitPage()">
-    <header class="main-header">
-        <div class="main-logo">Naphtali's Meme-Generator</div>
-        <nav class="main-navbar">
-            <ul class="nav-list clean-list">
+    <header class="main-header flex">
+        <div class="main-logo">Naphtali's Memer</div>
+        <nav class="main-navbar flex">
+            <ul class="nav-list clean-list flex">
                 <li>
-                    <a href="#" class="clean-link">Gallery</a>
+                    <a class="clean-btn btn navbar-btn" href="#" class="clean-link" onclick="onOpenGallery()">Gallery</a>
                 </li>
                 <li>
-                    <a href="#" class="clean-link">Saved Memes</a>
+                    <a class="clean-btn btn navbar-btn" href="#" class="clean-link" onclick="onOpenGallery()">Saved Memes</a>
                 </li>
                 <li>
-                    <a href="#" class="clean-link">About</a>
+                    <a class="clean-btn btn navbar-btn" href="#" class="clean-link">About</a>
                 </li>
             </ul>
         </nav>
@@ -35,48 +35,53 @@
             </div>
             <button class="clean-btn btn show-more-words-btn">More...</button>
         </section>
+        <div class="main-content-container">
 
-        <section class="main-gallery grid">
 
-        </section>
-        <section class="main-editor">
+            <section class="main-gallery grid">
 
-            <canvas id="my-canvas" width="500" height="500"></canvas>
+            </section>
+            <section class="main-editor">
 
-            <div class="canvas-controls">
-                <input type="text" onchange="onEditText(this.value)" oninput="onEditText(this.value)" placeholder="Make your meme!">
-                <section class="change-pos-btns">
-                    <button class="clean-btn btn control-btn" onclick="onChangePosY(-1)">↑</button>
-                    <button class="clean-btn btn control-btn" onclick="onChangePosY(1)">↓</button>
-                    <button class="clean-btn btn control-btn" onclick="onChangeLines(1)">⇅</button>
-                    <button class="clean-btn btn control-btn" onclick="onAddLine()">+</button>
-                    <button class="clean-btn btn control-btn" onclick="onDeleteLine()">delete</button>
-                </section>
-                <section class="clean-btn btn change-txt-btns">
-                    <button class="clean-btn btn change-text-btn" onclick="onChangeFontSize(1)">A+</button>
-                    <button class="clean-btn btn change-text-btn" onclick="onChangeFontSize(-1)">A-</button>
-                    <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('left')">left align</button>
-                    <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('center')">center align</button>
-                    <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('right')">right align</button>
-                    <select name="font-family" id="font-family-picker" onchange="onChangeFontFam(this.value)">
+                <canvas id="my-canvas" width="500" height="500"></canvas>
+
+                <div class="canvas-controls">
+                    <input type="text" onchange="onEditText(this.value)" oninput="onEditText(this.value)" placeholder="Make your meme!">
+                    <section class="change-pos-btns">
+                        <button class="clean-btn btn control-btn" onclick="onChangePosY(-1)">↑</button>
+                        <button class="clean-btn btn control-btn" onclick="onChangePosY(1)">↓</button>
+                        <button class="clean-btn btn control-btn" onclick="onChangeLines(1)">⇅</button>
+                        <button class="clean-btn btn control-btn" onclick="onAddLine()">+</button>
+                        <button class="clean-btn btn control-btn" onclick="onDeleteLine()">delete</button>
+                    </section>
+                    <section class="clean-btn btn change-txt-btns">
+                        <button class="clean-btn btn change-text-btn" onclick="onChangeFontSize(1)">A+</button>
+                        <button class="clean-btn btn change-text-btn" onclick="onChangeFontSize(-1)">A-</button>
+                        <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('left')">left align</button>
+                        <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('center')">center align</button>
+                        <button class="clean-btn btn change-text-btn" onclick="onChangeAlign('right')">right align</button>
+                        <select name="font-family" id="font-family-picker" onchange="onChangeFontFam(this.value)">
                         <option value="Impact">Impact</option>
                         <option value="Ariel">Ariel</option>
                     </select>
-                    <input type="color" class="clean-btn btn change-text-btn" onchange="onChangeSColor(this.value)">stroke color</button>
-                    <input type="color" class="clean-btn btn change-text-btn" onchange="onChangeFColor(this.value)">font color</button>
-                </section>
-                <section class="sticker-picker">
-                    <!-- WIP - bonus -->
-                </section>
-                <section class="social-btns">
-                    <button class="btn share-btn">Share</button>
-                    <button class="btn save-btn">Save</button>
-                    <button class="btn download-btn">Download</button>
-                </section>
-            </div>
-        </section>
+                        <input type="color" class="clean-btn btn change-text-btn" onchange="onChangeSColor(this.value)">stroke color</button>
+                        <input type="color" class="clean-btn btn change-text-btn" onchange="onChangeFColor(this.value)">font color</button>
+                    </section>
+                    <section class="sticker-picker">
+                        <!-- WIP - bonus -->
+                    </section>
+                    <section class="social-btns">
+                        <button class="btn share-btn">Share</button>
+                        <button class="btn save-btn">Save</button>
+                        <button class="btn download-btn">Download</button>
+                    </section>
+                </div>
+            </section>
+        </div>
 
-        <footer class="main-footer">Made by Naphtali Rubin - Ninja programming cadet at the Coding Academy &copy;</footer>
+        <footer class="main-footer">
+            <small>Made by Naphtali Rubin - Ninja programming cadet at the Coding Academy &copy;</small>
+        </footer>
     </main>
 
     <script src="js/services/storage-service.js"></script>

@@ -1,5 +1,6 @@
 'use strict';
 
+var gSize = { x: 0, y: 0 }
 var gMeme = {
     selectedImgId: '',
     selectedLineIdx: 0,
@@ -15,17 +16,6 @@ var gMeme = {
         posX: 0,
         isDragable: false
     }, {
-        txt: 'but when i do',
-        lineWidth: 1,
-        size: 48,
-        font: 'Impact',
-        align: 'center',
-        color: 'red',
-        fillColor: 'white',
-        posY: 250,
-        posX: 0,
-        isDragable: false
-    }, {
         txt: 'i eat schwarma!',
         lineWidth: 1,
         size: 48,
@@ -33,8 +23,8 @@ var gMeme = {
         align: 'center',
         color: 'red',
         fillColor: 'white',
-        posY: 490,
-        posX: 0,
+        posY: 0,
+        posX: 100,
         isDragable: false
     }]
 };
@@ -57,9 +47,9 @@ function getAlign() {
         case 'left':
             return { dir: 'start', posX: 10, posY: gMeme.lines[gMeme.selectedLineIdx].posY };
         case 'right':
-            return { dir: 'end', posX: 490, posY: gMeme.lines[gMeme.selectedLineIdx].posY };
+            return { dir: 'end', posX: gSize.x, posY: gMeme.lines[gMeme.selectedLineIdx].posY };
         case 'center':
-            return { dir: 'center', posX: 250, posY: gMeme.lines[gMeme.selectedLineIdx].posY };
+            return { dir: 'center', posX: (gSize.x / 2), posY: gMeme.lines[gMeme.selectedLineIdx].posY };
     }
 }
 
@@ -103,8 +93,7 @@ function addLine() {
 function deleteLine() {
     if (gMeme.lines.length === 0) return;
     gMeme.lines.splice(gMeme.selectedLineIdx, 1);
-    if (gMeme.selectedLineIdx > 0) changePosY(-1);
-    console.log(gMeme);
+    if (gMeme.selectedLineIdx > 0) gMeme.selectedLineIdx -= 1;
 }
 
 function changeAlign(dir) {
@@ -137,15 +126,14 @@ function startDragging(ev) {
 
 }
 
+function getCurrMemeStarterPos() {
+    var imgId = getCurrMeme();
+    var elImg = document.querySelector(`.item-${imgId}`);
+    [gSize.x, gSize.y] = [elImg.naturalWidth, elImg.naturalHeight];
+    gMeme.lines[1].posY = elImg.naturalHeight - 15;
+    // gSize.x = 
 
-
-
-
-
-
-
-
-
+}
 
 function getMemeText() {
     return gMeme.lines[gMeme.selectedLineIdx].txt;

@@ -88,7 +88,7 @@ img {
 }
 
 .main-gallery {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     gap: 30px;
     margin: 15px 50px;
 }
@@ -96,7 +96,7 @@ img {
 .gallery-item {
     border-radius: 12px;
     object-fit: cover;
-    height: 10rem;
+    height: 8rem;
     transition: opacity 0.3s;
 }
 

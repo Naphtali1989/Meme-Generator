@@ -11,7 +11,7 @@ function getImgsToShow() {
 
 
 function getImgById(id) {
-    return gImgs.find(imgId => id)
+    return gImgs.find(img => img.id === id)
 }
 
 
@@ -26,7 +26,7 @@ function _createImg(url, keywords) {
 
 function _createImgs() {
     var imgs = [];
-    for (let i = 0; i < 18; i++) {
+    for (let i = 0; i < 25; i++) {
         imgs.push(_createImg(`img/meme-imgs/${i+1}.jpg`, ['happy']));
     }
     return imgs;

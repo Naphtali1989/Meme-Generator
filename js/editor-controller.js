@@ -14,25 +14,38 @@ function openEditor() {
 function onInitCanvas() {
     gCanvas = document.querySelector('#my-canvas');
     gCtx = gCanvas.getContext('2d');
+
 }
 
 function onInitEditor(id) {
     getCurrMeme(id);
     onInitCanvas();
+    resizeCanvas(id);
+    getCurrMemeStarterPos();
     onDrawMeme();
 }
 
-function onDrawMeme() {
-    var elImg = document.querySelector(`.item-${getCurrMeme()}`);
-    gCtx.drawImage(elImg, 0, 0, gCanvas.width, gCanvas.height);
+function resizeCanvas(id) {
+    var elImg = document.querySelector(`.item-${id}`)
+    gCanvas.width = elImg.naturalWidth
+    gCanvas.height = elImg.naturalHeight
+}
 
-    var linesNum = getLinesAmount();
-    for (let i = 0; i < linesNum; i++) {
-        var selectedLine = getCurrSelectedLine();
-        var align = getAlign();
-        // if (selectedLine === gCurrIdx) drawTextOutline();
-        onDrawText(align.dir, align.posX, align.posY);
-        onChangeLines(1);
+function onDrawMeme() {
+    var currImg = getImgById(getCurrMeme());
+    var img = new Image()
+    img.src = `./${currImg.url}`;
+    img.onload = () => {
+        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
+
+        var linesNum = getLinesAmount();
+        for (let i = 0; i < linesNum; i++) {
+            var align = getAlign();
+            // var selectedLine = getCurrSelectedLine();
+            // if (selectedLine === gCurrIdx) drawTextOutline();
+            onDrawText(align.dir, align.posX, align.posY);
+            onChangeLines(1);
+        }
     }
 }
 

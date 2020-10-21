@@ -17,9 +17,10 @@ function initEditor(id) {
         selectedLineIdx: 0,
         lines: [{
             txt: 'I never eat falafel',
-            size: 50,
+            lineWidth: 1,
+            size: 48,
             font: 'Impact',
-            align: 'left',
+            align: 'center',
             color: 'red',
             fillColor: 'white',
             isDragable: false
@@ -35,13 +36,13 @@ function drawMeme() {
 }
 
 function drawText(align, x, y) {
-
     gCtx.strokeStyle = gMeme.lines[gMeme.selectedLineIdx].color;
     gCtx.fillStyle = gMeme.lines[gMeme.selectedLineIdx].fillColor;
-    gCtx.lineWidth = '1'
+    gCtx.lineWidth = gMeme.lines[gMeme.selectedLineIdx].lineWidth;
     gCtx.font =
-        `${gMeme.lines[gMeme.selectedLineIdx].size}px ${gMeme.lines[gMeme.selectedLineIdx].font}`
+        `${gMeme.lines[gMeme.selectedLineIdx].size}px ${gMeme.lines[gMeme.selectedLineIdx].font}`;
     gCtx.textAlign = align;
+
     gCtx.fillText(gMeme.lines[gMeme.selectedLineIdx].txt, x, y)
     gCtx.strokeText(gMeme.lines[gMeme.selectedLineIdx].txt, x, y)
 }
@@ -49,17 +50,17 @@ function drawText(align, x, y) {
 function getAlign() {
     switch (gMeme.lines[gMeme.selectedLineIdx].align) {
         case 'left':
-            return 'start';
+            return { dir: 'start', posX: 10 };
         case 'right':
-            return 'end';
+            return { dir: 'end', posX: 490 };
         case 'center':
-            return 'center'
+            return { dir: 'center', posX: 250 };
     }
 }
 
 function editText(val) {
     gMeme.lines[gMeme.selectedLineIdx].txt = val;
-    console.log(gMeme)
     var align = getAlign();
-    drawText(align, 10, 50)
+    drawMeme();
+    drawText(align.dir, align.posX, 50)
 }

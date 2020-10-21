@@ -25,3 +25,7 @@ function onOpenEditor(imgId) {
 function onEditText(value) {
     editText(value);
 }
+
+function onChangeFontSize(diff) {
+
+}

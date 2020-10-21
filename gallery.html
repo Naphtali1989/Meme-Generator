@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naphtali's Memer</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body onload="onInitPage()">
+    <header class="main-header">
+        <div class="main-logo">Naphtali's Meme-Generator</div>
+        <nav class="main-navbar">
+            <ul class="nav-list clean-list">
+                <li>
+                    <a href="#">Gallery</a>
+                </li>
+                <li>
+                    <a href="#">Saved Memes</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="search-content">
+            <input type="search" name="search-bar" class="search-bar" placeholder="search">
+            <button class="clean-btn search-btn" onclick="">Search</button>
+            <div class="search-words">
+
+            </div>
+            <button class="clean-btn show-more-words-btn">More...</button>
+        </section>
+
+        <section class="main-gallery">
+
+        </section>
+        <section class="main-editor">
+
+        </section>
+    </main>
+
+    <script src="js/services/storage-service.js"></script>
+    <script src="js/services/util-service.js"></script>
+    <script src="js/services/gallery-service.js"></script>
+    <script src="js/services/editor-service.js"></script>
+    <script src="js/main-controller.js"></script>
+</body>
+
+</html>

@@ -40,12 +40,14 @@
 
         <div class="main-content-container flex column">
 
+            <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+
             <section class="main-gallery grid">
             </section>
 
             <section class="main-editor">
 
-                <canvas id="my-canvas" width="500" height="500" onmousedown="onStartDragging(event)" onmousemove="onDrag(event)" onmouseup="onStopDragging(event)" ontouchstart="onHandleTouch(event)" ontouchmove="onDrag(event)"></canvas>
+                <canvas id="my-canvas" width="500" height="500" onmousedown="onStartDragging(event)" onmousemove="onDragLine(event)" onmouseup="onStopDragging(event)" ontouchstart="onHandleTouch(event)" ontouchmove="onDragLine(event)"></canvas>
 
                 <div class="canvas-controls flex column">
                     <input type="text" name="editor-text" onchange="onEditText(this.value)" oninput="onEditText(this.value)" placeholder="Make your meme!">
@@ -64,18 +66,30 @@
                         <button class="clean-btn btn change-txt-btn" onclick="onChangeAlign('right')"><img src="img/ICONS/align-to-right.png" alt=""></button>
                     </section>
                     <section class="change-txt-deco-btns">
-                        <select name="font-family" id="font-family-picker" onchange="onChangeFontFam(this.value)">
+                        <select name="font-family" id="font-family-picker" class="clean-btn btn change-txt-color-btn" onchange="onChangeFontFam(this.value)">
                             <option value="Impact">Impact</option>
                             <option value="Ariel">Ariel</option>
                         </select>
-                        <input type="color" class="clean-btn btn change-txt-btn s-color-btn" onchange="onChangeSColor(this.value)" value="#fff"></button>
-                        <input type="color" class="clean-btn btn change-txt-btn f-color-btn" onchange="onChangeFColor(this.value)" value="#000"></button>
+
+                        <label for="user-s-color-input" class="clean-btn btn change-txt-color-btn s-color-btn">
+                            <img src="img/ICONS/text stroke.png" alt="" class="clean-btn btn change-txt-color-btn s-color-btn">
+                        </label>
+                        <input type="color" id="user-s-color-input" class="color-input" onchange="onChangeSColor(this.value)" value="#fff">
+                        <label for="user-f-color-input" class="clean-btn btn change-txt-color-btn f-color-btn">
+                            <img src="img/ICONS/paint-board-and-brush.png" class="clean-btn btn change-txt-color-btn f-color-btn" alt="">
+                        </label>
+                        <input type="color" id="user-f-color-input" class="color-input" onchange="onChangeFColor(this.value)" value="#000">
+
                     </section>
                     <section class="sticker-picker">
                         <!-- WIP - bonus -->
                     </section>
                     <section class="social-btns">
-                        <button class="btn share-btn">Share</button>
+                        <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(this, event)">
+                            <input name="img" id="imgData" type="hidden" />
+                            <button class="btn" type="submit">Share</button>
+                            <div class="share-container"></div>
+                        </form>
                         <button class="btn save-btn">Save</button>
                         <a href="#" class="btn download-btn" onclick="onDownloadCanvas(this)" download="">Download</button>
                     </section>
@@ -90,6 +104,7 @@
 
     <script src="js/services/storage-service.js"></script>
     <script src="js/services/util-service.js"></script>
+    <script src="js/services/upload-service.js"></script>
     <script src="js/services/gallery-service.js"></script>
     <script src="js/services/editor-service.js"></script>
     <script src="js/editor-controller.js"></script>

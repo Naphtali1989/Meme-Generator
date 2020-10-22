@@ -32,3 +32,7 @@ function closeEditor() {
     var elContainer = document.querySelector('.main-content');
     elContainer.classList.remove('edit-mode')
 }
+
+function onImgInput(ev) {
+    loadImageFromInput(ev, renderCanvas)
+}

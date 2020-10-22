@@ -119,7 +119,7 @@ img {
 }
 
 .canvas-controls {
-    margin: 0 6.25rem;
+    margin: 0 6rem;
 }
 
 .canvas-controls input,
@@ -137,12 +137,14 @@ img {
 }
 
 .change-pos-btns :not(:last-child),
-.change-txt-btns :not(:last-child) {
+.change-txt-btns :not(:last-child),
+.change-txt-color-btn:not(:last-child) {
     margin-right: 0.65rem;
 }
 
 .control-btn,
-.change-txt-btn {
+.change-txt-btn,
+.change-txt-color-btn {
     margin-top: 1.125rem;
     width: 59px;
     height: 59px;
@@ -158,7 +160,8 @@ img {
 }
 
 input[type="color"] {
-    margin-left: 0.65rem;
+    width: 0;
+    opacity: 0;
 }
 
 

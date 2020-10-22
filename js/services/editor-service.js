@@ -1,6 +1,10 @@
 'use strict';
 
 var gSize = { x: 0, y: 0 }
+var gTxtDimensions;
+var gCurrCurserPos = {};
+var gPrevCurserPos = {};
+
 var gMeme = {
     selectedImgId: '',
     selectedLineIdx: 0,
@@ -13,8 +17,9 @@ var gMeme = {
         color: 'red',
         fillColor: 'white',
         posY: 50,
-        posX: 0,
-        isDragable: false
+        posX: null,
+        isDragable: false,
+        dimensionMap: {},
     }, {
         txt: 'i eat schwarma!',
         lineWidth: 1,
@@ -24,8 +29,9 @@ var gMeme = {
         color: 'red',
         fillColor: 'white',
         posY: 0,
-        posX: 100,
-        isDragable: false
+        posX: null,
+        isDragable: false,
+        dimensionMap: {},
     }]
 };
 
@@ -42,14 +48,26 @@ function getPos() {
     return { x, y, length, size }
 }
 
+function getTxtDimensions() {
+    var pos = getPos();
+    var yUp = pos.y - pos.size + 2;
+    var xLeft = 300 - pos.length * (pos.size / 3.5) - 10;
+    var xRight = ((pos.length / 2) * (pos.size * 1.165)) + 10 + xLeft;
+    gMeme.lines[gMeme.selectedLineIdx].dimensionMap = { yUp, yDown: pos.y - 2, xLeft, xRight };
+}
+
 function getAlign() {
+    var posX = gMeme.lines[gMeme.selectedLineIdx].posX;
     switch (gMeme.lines[gMeme.selectedLineIdx].align) {
         case 'left':
-            return { dir: 'start', posX: 10, posY: gMeme.lines[gMeme.selectedLineIdx].posY };
+            if (!gMeme.lines[gMeme.selectedLineIdx].posX) posX = 10;
+            return { dir: 'start', posX, posY: gMeme.lines[gMeme.selectedLineIdx].posY };
         case 'right':
-            return { dir: 'end', posX: gSize.x, posY: gMeme.lines[gMeme.selectedLineIdx].posY };
+            if (!gMeme.lines[gMeme.selectedLineIdx].posX) posX = 590;
+            return { dir: 'end', posX, posY: gMeme.lines[gMeme.selectedLineIdx].posY };
         case 'center':
-            return { dir: 'center', posX: (gSize.x / 2), posY: gMeme.lines[gMeme.selectedLineIdx].posY };
+            if (!gMeme.lines[gMeme.selectedLineIdx].posX) posX = 590 / 2;
+            return { dir: 'center', posX, posY: gMeme.lines[gMeme.selectedLineIdx].posY };
     }
 }
 
@@ -76,18 +94,17 @@ function changePosY(diff) {
     gMeme.lines[gMeme.selectedLineIdx].posY += diff;
 }
 
+function changePosX(diff) {
+    if (gMeme.lines.length === 0) return;
+    gMeme.lines[gMeme.selectedLineIdx].posX += diff;
+}
+
 function changeLines(diff) {
     if (gMeme.lines.length === 0) return;
     if (gMeme.selectedLineIdx + diff >= gMeme.lines.length) {
         gMeme.selectedLineIdx = -1;
     }
     gMeme.selectedLineIdx += diff;
-}
-
-function addLine() {
-    var sample = (gMeme.lines.length === 0) ? _createNewMemeLine() : JSON.parse(JSON.stringify(gMeme.lines[gMeme.selectedLineIdx]));
-    sample.txt = 'New Line!';
-    gMeme.lines.unshift(sample);
 }
 
 function deleteLine() {
@@ -113,25 +130,63 @@ function changeFontFam(value) {
     gMeme.lines[gMeme.selectedLineIdx].font = value;
 }
 
+function addLine() {
+    var sample = (gMeme.lines.length === 0) ? _createNewMemeLine() : JSON.parse(JSON.stringify(gMeme.lines[gMeme.selectedLineIdx]));
+    sample.txt = 'New Line!';
+    gMeme.lines.unshift(sample);
+}
+
 function getCurrMemeIdx() {
     return gMeme.selectedLineIdx;
 }
 
 function checkDragPos(ev) {
-    var [x, y] = [ev.offsetX, ev.offsetY];
+    const { offsetX, offsetY } = ev;
+
+    // const { clientX, clientY } = ev;
+    const clickedLine = gMeme.lines.find(line => {
+        return (offsetX > line.dimensionMap.xLeft &&
+                offsetX < line.dimensionMap.xRight) &&
+            (offsetY < line.dimensionMap.yDown &&
+                offsetY > line.dimensionMap.yUp);
+    })
+    var idx = gMeme.lines.findIndex(line => line === clickedLine)
+    if (clickedLine) {
+        gMeme.selectedLineIdx = idx
+        gPrevCurserPos.x = offsetX;
+        gPrevCurserPos.y = offsetY;
+        clickedLine.isDragable = true;
+    }
+}
+
+function dragLine(ev) {
+    if (!gMeme.lines[gMeme.selectedLineIdx].isDragable) return;
+
+    const { offsetX, offsetY } = ev;
+    gCurrCurserPos.x = offsetX;
+    gCurrCurserPos.y = offsetY;
+    var [x, y] = getDistance()
     console.log(x, y)
+    changePosX(x);
+    changePosY(y);
+    gPrevCurserPos.x = offsetX;
+    gPrevCurserPos.y = offsetY;
 }
 
-function startDragging(ev) {
-
+function getDistance() {
+    var x = gCurrCurserPos.x - gPrevCurserPos.x;
+    var y = gCurrCurserPos.y - gPrevCurserPos.y;
+    return [x, y];
 }
 
-function getCurrMemeStarterPos() {
-    var imgId = getCurrMeme();
-    var elImg = document.querySelector(`.item-${imgId}`);
-    [gSize.x, gSize.y] = [elImg.naturalWidth, elImg.naturalHeight];
-    gMeme.lines[1].posY = elImg.naturalHeight - 15;
-    // gSize.x = 
+function stopDragging() {
+    gMeme.lines[gMeme.selectedLineIdx].isDragable = false;
+    console.log('Stop draggin')
+}
+
+function getCurrMemeStarterPos(width, height) {
+    [gSize.x, gSize.y] = [width, height];
+    gMeme.lines[1].posY = height - 15;
 
 }
 

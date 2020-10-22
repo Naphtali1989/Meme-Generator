@@ -29,12 +29,14 @@
     <main class="main-content flex column">
         <section class="search-content flex">
             <div class="search-bar">
-                <input type="search" name="search-bar" class="search-bar" placeholder="search">
-                <button class="clean-btn btn search-btn" onclick="">Search</button>
+                <input type="search" id="search-bar" name="search-bar" class="search-bar" placeholder="search">
+                <label for="search-bar">
+                    <button class="clean-btn btn search-btn" onclick="onSetSearch()">Search</button>
+                </label>
             </div>
             <div class="search-words">
-                <span>cute</span> <span>happy</span> <span>angry</span>
-                <button class="clean-btn btn show-more-words-btn">More...</button>
+                <span class="search-words-container"></span>
+                <button class="clean-btn btn show-more-words-btn" onclick="renderFullSearchBar()">More...</button>
             </div>
         </section>
 

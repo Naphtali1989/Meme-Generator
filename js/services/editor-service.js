@@ -166,7 +166,6 @@ function dragLine(ev) {
     gCurrCurserPos.x = offsetX;
     gCurrCurserPos.y = offsetY;
     var [x, y] = getDistance()
-    console.log(x, y)
     changePosX(x);
     changePosY(y);
     gPrevCurserPos.x = offsetX;
@@ -181,7 +180,6 @@ function getDistance() {
 
 function stopDragging() {
     gMeme.lines[gMeme.selectedLineIdx].isDragable = false;
-    console.log('Stop draggin')
 }
 
 function getCurrMemeStarterPos(width, height) {

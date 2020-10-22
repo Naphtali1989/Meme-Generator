@@ -27,7 +27,8 @@ function onInitEditor(id) {
 function resizeCanvas(id) {
     var elImg = document.querySelector(`.item-${id}`)
     gCanvas.width = 600
-    gCanvas.height = (gCanvas.width * elImg.naturalHeight) / elImg.naturalWidth
+    if (!elImg) gCanvas.height = 600;
+    else gCanvas.height = (gCanvas.width * elImg.naturalHeight) / elImg.naturalWidth
     getCurrMemeStarterPos(gCanvas.width, gCanvas.height);
 }
 
@@ -71,6 +72,24 @@ function drawTextOutline() {
     gCtx.strokeStyle = 'black';
     gCtx.stroke();
 }
+
+function clearOutline() {
+    var currImg = getImgById(getCurrMeme());
+    var img = new Image()
+    img.src = `./${currImg.url}`;
+    img.onload = () => {
+        gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
+        gCurrPos = getPos();
+        var linesNum = getLinesAmount();
+        for (let i = 0; i < linesNum; i++) {
+            var align = getAlign();
+            getTxtDimensions();
+            onDrawText(align.dir, align.posX, align.posY);
+            onChangeLines(1);
+        }
+    }
+}
+
 
 function onEditText(val) {
     getMemeIdx();
@@ -147,10 +166,13 @@ function onStopDragging(ev) {
 }
 
 function onDownloadCanvas(elLink) {
-    onDrawMeme();
-    const data = gCanvas.toDataURL();
-    elLink.href = data;
-    elLink.download = 'meme.jpg';
+    clearOutline();
+    setTimeout(() => {
+        const data = gCanvas.toDataURL();
+        elLink.href = data;
+        elLink.download = 'meme.jpg';
+    }, 1000)
+
 }
 
 function onUploadImg(elForm, ev) {

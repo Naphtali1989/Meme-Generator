@@ -14,7 +14,7 @@ var gMeme = {
         size: 48,
         font: 'Impact',
         align: 'center',
-        color: 'red',
+        color: 'black',
         fillColor: 'white',
         posY: 50,
         posX: null,
@@ -26,7 +26,7 @@ var gMeme = {
         size: 48,
         font: 'Impact',
         align: 'center',
-        color: 'red',
+        color: 'black',
         fillColor: 'white',
         posY: 0,
         posX: null,
@@ -116,6 +116,18 @@ function deleteLine() {
 function changeAlign(dir) {
     if (gMeme.lines.length === 0) return;
     gMeme.lines[gMeme.selectedLineIdx].align = dir;
+    switch (gMeme.lines[gMeme.selectedLineIdx].align) {
+        case 'left':
+            gMeme.lines[gMeme.selectedLineIdx].posX = 10;
+            break;
+        case 'right':
+            gMeme.lines[gMeme.selectedLineIdx].posX = 590;
+            break;
+
+        case 'center':
+            gMeme.lines[gMeme.selectedLineIdx].posX = 590 / 2;
+            break;
+    }
 }
 
 function changeSColor(value) {
@@ -166,8 +178,8 @@ function dragLine(ev) {
     gCurrCurserPos.x = offsetX;
     gCurrCurserPos.y = offsetY;
     var [x, y] = getDistance()
-    changePosX(x);
     changePosY(y);
+    changePosX(x);
     gPrevCurserPos.x = offsetX;
     gPrevCurserPos.y = offsetY;
 }

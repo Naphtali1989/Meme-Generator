@@ -68,7 +68,9 @@ function closeEditor() {
 }
 
 function onImgInput(ev) {
-    loadImageFromInput(ev, renderCanvas);
+    // openEditor();
+    loadImageFromInput(ev);
+    renderGallery();
 }
 
 function onSetSearch(value) {

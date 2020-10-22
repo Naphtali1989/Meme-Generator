@@ -36,6 +36,28 @@ function getSearchWords() {
     return Object.entries(gKeywords);
 }
 
+function loadImageFromInput(ev) {
+    document.querySelector('.share-container').innerHTML = ''
+    var reader = new FileReader();
+
+    reader.onload = function(event) {
+        var img = new Image();
+        // img.onload = onImageReady.bind(null, img)
+        img.src = event.target.result;
+
+        var randWords = [];
+        for (let i = 0; i < getRandomInt(0, 5); i++) {
+            randWords.push(searchWords[getRandomInt(0, 5)])
+        }
+        gImgs.push(_createImg(img.src, randWords));
+        console.log(img)
+        img.onload = onInitEditor.bind(null, img)
+    }
+    reader.readAsDataURL(ev.target.files[0]);
+    console.log(gImgs)
+}
+
+
 
 // Private functions. please do not touch
 function _createImg(url, keywords) {

@@ -149,9 +149,16 @@ img {
 .control-btn,
 .change-txt-btn,
 .change-txt-color-btn {
+    background-color: #ff8f03;
+    border-radius: 1rem;
     margin-top: 1.125rem;
     width: 59px;
     height: 59px;
+    border: none;
+}
+
+.change-txt-color-btn {
+    position: relative;
 }
 
 .change-txt-deco-btns select {
@@ -160,8 +167,19 @@ img {
 }
 
 input[type="color"] {
-    width: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
     opacity: 0;
+}
+
+.social-btns {
+    padding: 1rem;
+}
+
+.social-btns .btn {
+    padding: 1rem;
+    font-family: montse;
 }
 
 
@@ -181,7 +199,6 @@ input[type="color"] {
     text-align: center;
     padding: 2rem;
     font-weight: bold;
-    cursor: none;
 }
 
 
@@ -214,4 +231,33 @@ input[type="color"] {
 .btn {
     cursor: pointer;
     text-decoration: none;
+}
+
+@media (max-width:740px) {
+    .main-content.edit-mode .main-editor {
+        flex-direction: column;
+        width: 100%;
+        padding: 1rem 0;
+    }
+    .canvas-controls,
+    .social-btns {
+        margin: 1rem 0;
+    }
+    .control-btn,
+    .change-txt-btn,
+    .change-txt-color-btn {
+        margin-top: 1.125rem;
+        width: 50px;
+        height: 50px;
+    }
+    .change-txt-deco-btns select {
+        width: 100%;
+    }
+    .social-btns .btn {
+        padding: 0.75rem;
+        font-family: montse;
+    }
+    .main-footer {
+        position: relative;
+    }
 }

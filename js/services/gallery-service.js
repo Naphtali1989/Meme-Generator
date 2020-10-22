@@ -23,7 +23,6 @@ function getImgsToShow() {
     return imgs;
 }
 
-
 function getImgById(id) {
     return gImgs.find(img => img.id === id)
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-var gSize = { x: 0, y: 0 }
+var gSize = { x: 0, y: 0 };
 var gTxtDimensions;
 var gCurrCurserPos = {};
 var gPrevCurserPos = {};
@@ -46,7 +46,7 @@ function getPos() {
     var y = gMeme.lines[gMeme.selectedLineIdx].posY;
     var length = gMeme.lines[gMeme.selectedLineIdx].txt.length;
     var size = gMeme.lines[gMeme.selectedLineIdx].size;
-    return { x, y, length, size }
+    return { x, y, length, size };
 }
 
 function getTxtDimensions() {
@@ -155,19 +155,27 @@ function getCurrMemeIdx() {
 
 }
 
-function checkDragPos(ev) {
-    const { offsetX, offsetY } = ev;
+function getTouchPos(ev) {
+    return { x: ev.touches[0].clientX, y: ev.touches[0].clientY };
+}
 
-    // const { clientX, clientY } = ev;
+function getMousePos(ev) {
+    return { x: ev['offsetX'], y: ev['offsetY'] };
+}
+
+function checkDragPos(pos) {
+
+    const [offsetX, offsetY] = [pos.x, pos.y];
+
     const clickedLine = gMeme.lines.find(line => {
         return (offsetX > line.dimensionMap.xLeft &&
                 offsetX < line.dimensionMap.xRight) &&
             (offsetY < line.dimensionMap.yDown &&
                 offsetY > line.dimensionMap.yUp);
     })
-    var idx = gMeme.lines.findIndex(line => line === clickedLine)
+    var idx = gMeme.lines.findIndex(line => line === clickedLine);
     if (clickedLine) {
-        gMeme.selectedLineIdx = idx
+        gMeme.selectedLineIdx = idx;
         gPrevCurserPos.x = offsetX;
         gPrevCurserPos.y = offsetY;
         clickedLine.isDragable = true;

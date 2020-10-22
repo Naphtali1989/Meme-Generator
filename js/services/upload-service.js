@@ -21,10 +21,10 @@ function doUploadImg(elForm, onSuccess) {
             body: formData
         })
         .then(function(res) {
-            return res.text()
+            return res.text();
         })
         .then(onSuccess)
         .catch(function(err) {
-            console.error(err)
+            console.error(err);
         })
 }

@@ -16,9 +16,9 @@
                 <li>
                     <a class="clean-btn btn navbar-btn" href="#" class="clean-link" onclick="onOpenGallery()">Gallery</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a class="clean-btn btn navbar-btn" href="#" class="clean-link" onclick="onOpenGallery()">Saved Memes</a>
-                </li>
+                </li> -->
                 <li>
                     <a class="clean-btn btn navbar-btn" href="#" class="clean-link">About</a>
                 </li>
@@ -75,18 +75,18 @@
 
                         <label for="user-s-color-input" class="clean-btn btn change-txt-color-btn s-color-btn">
                             <img src="img/ICONS/text stroke.png" alt="" class="clean-btn btn change-txt-color-btn s-color-btn">
+                            <input type="color" id="user-s-color-input" class="color-input" onchange="onChangeSColor(this.value)" value="#fff">
                         </label>
-                        <input type="color" id="user-s-color-input" class="color-input" onchange="onChangeSColor(this.value)" value="#fff">
                         <label for="user-f-color-input" class="clean-btn btn change-txt-color-btn f-color-btn">
                             <img src="img/ICONS/paint-board-and-brush.png" class="clean-btn btn change-txt-color-btn f-color-btn" alt="">
+                            <input type="color" id="user-f-color-input" class="color-input" onchange="onChangeFColor(this.value)" value="#000">
                         </label>
-                        <input type="color" id="user-f-color-input" class="color-input" onchange="onChangeFColor(this.value)" value="#000">
 
                     </section>
                     <section class="sticker-picker">
                         <!-- WIP - bonus -->
                     </section>
-                    <section class="social-btns">
+                    <section class="social-btns flex">
                         <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(this, event)">
                             <input name="img" id="imgData" type="hidden" />
                             <button class="btn" type="submit">Share</button>

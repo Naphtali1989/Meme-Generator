@@ -159,10 +159,6 @@ img {
     margin-bottom: 2.25rem;
 }
 
-.s-color-btn {
-    background: url(../img/ICONS/text\ stroke.png) cover;
-}
-
 input[type="color"] {
     width: 0;
     opacity: 0;
@@ -172,7 +168,7 @@ input[type="color"] {
 /* Footer */
 
 .main-footer {
-    background-color: #ff8f03;
+    background-color: #ff7f00;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -184,6 +180,8 @@ input[type="color"] {
 .main-footer small {
     text-align: center;
     padding: 2rem;
+    font-weight: bold;
+    cursor: none;
 }
 
 

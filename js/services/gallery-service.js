@@ -51,7 +51,7 @@ function loadImageFromInput(ev) {
         }
         gImgs.push(_createImg(img.src, randWords));
         console.log(img)
-        img.onload = onInitEditor.bind(null, img)
+        img.onload = onInitEditor.bind(null, img.id)
     }
     reader.readAsDataURL(ev.target.files[0]);
     console.log(gImgs)

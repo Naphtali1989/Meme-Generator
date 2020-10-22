@@ -65,10 +65,14 @@ function onDrawText(align, x, y) {
 function drawTextOutline() {
     var yLength = gCurrPos.size + 2;
     var xLength = ((gCurrPos.length / 2) * (gCurrPos.size * 1.165)) + 10;
-    gCurrPos.x = 300 - gCurrPos.length * (gCurrPos.size / 3.5) - 10;
+    if (!gCurrPos.x || gCurrPos.x === undefined) {
+        var posX = 300 - gCurrPos.length * (gCurrPos.size / 3.5) - 10;
+    } else {
+        var posX = gCurrPos.x - gCurrPos.length * (gCurrPos.size / 3.5) - 10;
+    }
 
     gCtx.beginPath();
-    gCtx.rect(gCurrPos.x, gCurrPos.y - yLength + 5, xLength, yLength + 2);
+    gCtx.rect(posX, gCurrPos.y - yLength + 5, xLength, yLength + 2);
     gCtx.strokeStyle = 'black';
     gCtx.stroke();
 }
@@ -157,6 +161,7 @@ function onStartDragging(ev) {
 }
 
 function onDragLine(ev) {
+    if (!checkIfDraging()) return;
     dragLine(ev);
     onDrawMeme();
 }
@@ -176,5 +181,6 @@ function onDownloadCanvas(elLink) {
 }
 
 function onUploadImg(elForm, ev) {
+    clearOutline();
     uploadImg(elForm, ev)
 }

@@ -1,6 +1,5 @@
 'use strict';
 
-
 function uploadImg(elForm, ev) {
     ev.preventDefault();
     document.getElementById('imgData').value = gCanvas.toDataURL("image/jpeg");

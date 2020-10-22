@@ -41,6 +41,7 @@ function getCurrSelectedLine() {
 }
 
 function getPos() {
+    if (gMeme.lines.length === 0) return;
     var x = gMeme.lines[gMeme.selectedLineIdx].posX;
     var y = gMeme.lines[gMeme.selectedLineIdx].posY;
     var length = gMeme.lines[gMeme.selectedLineIdx].txt.length;
@@ -49,6 +50,7 @@ function getPos() {
 }
 
 function getTxtDimensions() {
+    if (gMeme.lines.length === 0) return;
     var pos = getPos();
     var yUp = pos.y - pos.size + 2;
     var xLeft = 300 - pos.length * (pos.size / 3.5) - 10;
@@ -150,6 +152,7 @@ function addLine() {
 
 function getCurrMemeIdx() {
     return gMeme.selectedLineIdx;
+
 }
 
 function checkDragPos(ev) {
@@ -171,15 +174,22 @@ function checkDragPos(ev) {
     }
 }
 
+function checkIfDraging() {
+    if (gMeme.lines.length === 0 ||
+        !gMeme.lines[gMeme.selectedLineIdx].isDragable) return false;
+    return true;
+}
+
 function dragLine(ev) {
-    if (!gMeme.lines[gMeme.selectedLineIdx].isDragable) return;
+    if (gMeme.lines.length === 0 || !gMeme.lines[gMeme.selectedLineIdx].isDragable) return false;
 
     const { offsetX, offsetY } = ev;
     gCurrCurserPos.x = offsetX;
     gCurrCurserPos.y = offsetY;
     var [x, y] = getDistance()
-    changePosY(y);
+    if (!gMeme.lines[gMeme.selectedLineIdx].posX) x = gCurrCurserPos.x;
     changePosX(x);
+    changePosY(y);
     gPrevCurserPos.x = offsetX;
     gPrevCurserPos.y = offsetY;
 }
@@ -191,13 +201,13 @@ function getDistance() {
 }
 
 function stopDragging() {
+    if (gMeme.lines.length === 0) return;
     gMeme.lines[gMeme.selectedLineIdx].isDragable = false;
 }
 
 function getCurrMemeStarterPos(width, height) {
     [gSize.x, gSize.y] = [width, height];
     gMeme.lines[1].posY = height - 15;
-
 }
 
 function getMemeText() {
@@ -237,6 +247,8 @@ function _createNewMemeLine() {
         color: 'red',
         fillColor: 'white',
         posY: 50,
-        isDragable: false
+        posX: null,
+        isDragable: false,
+        dimensionMap: {},
     }
 }

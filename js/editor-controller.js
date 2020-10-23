@@ -16,7 +16,6 @@ function onInitEditor(id) {
     onInitCanvas();
     resizeCanvas(id);
     renderStickers();
-    onDrawMeme();
 }
 
 function onInitCanvas() {
@@ -25,14 +24,21 @@ function onInitCanvas() {
 
 }
 
-function resizeCanvas(id) {
+function resizeCanvas(id, size = 600) {
     var elImg = document.querySelector(`.item-${id}`);
-    gCanvas.width = 600;
+    gCanvas.width = size;
     if (!elImg) gCanvas.height = 600;
     else gCanvas.height = (gCanvas.width * elImg.naturalHeight) / elImg.naturalWidth;
     var dimentions = [gCanvas.getBoundingClientRect().left, gCanvas.getBoundingClientRect().top];
     var height = gCanvas.getBoundingClientRect().height;
-    getCurrMemeStarterPos(dimentions, height);
+    var width = gCanvas.getBoundingClientRect().width;
+    getCurrMemeStarterPos(dimentions, height, width);
+    onDrawMeme();
+}
+
+function onResizeCanvas() {
+    var elContainer = document.querySelector('.canvas-container');
+    resizeCanvas(getCurrMeme(), elContainer.offsetWidth)
 }
 
 function onDrawMeme() {
@@ -221,7 +227,6 @@ function renderStickers() {
         class="btn edit-sticker sticker-${sticker.id}" 
         onclick="onAddSticker('${sticker.id}')"></div>
         `;
-        //   <div style="background:url(${sticker.url}) center;"
     });
     var elStickers = document.querySelector('.sticker-picker');
     elStickers.innerHTML = strHTMLs.join('');

@@ -1,10 +1,12 @@
 'use strict';
 
+var gTouchPos = { x: 0, y: 0 };
 var gSize = { x: 0, y: 0 };
 var gTxtDimensions;
 var gCurrCurserPos = {};
 var gPrevCurserPos = {};
 var gStickers;
+var gIsMemeStickered = false;
 
 var gMeme = {
     selectedImgId: '',
@@ -36,6 +38,7 @@ var gMeme = {
     }],
     stickers: []
 };
+var gStickersOn = [];
 
 
 function getCurrSelectedLine() {
@@ -45,6 +48,7 @@ function getCurrSelectedLine() {
 function getPos() {
     if (gMeme.lines.length === 0) return;
     var x = gMeme.lines[gMeme.selectedLineIdx].posX;
+    if (!x) x = getAlign().posX
     var y = gMeme.lines[gMeme.selectedLineIdx].posY;
     var length = gMeme.lines[gMeme.selectedLineIdx].txt.length;
     var size = gMeme.lines[gMeme.selectedLineIdx].size;
@@ -55,9 +59,10 @@ function getTxtDimensions() {
     if (gMeme.lines.length === 0) return;
     var pos = getPos();
     var yUp = pos.y - pos.size + 2;
-    var xLeft = 300 - pos.length * (pos.size / 3.5) - 10;
+    var xLeft = (!pos.x || pos.x === undefined) ? 300 - pos.length * (pos.size / 3.5) - 10 : pos.x - pos.length * (pos.size / 3.5) - 10;
     var xRight = ((pos.length / 2) * (pos.size * 1.165)) + 10 + xLeft;
     gMeme.lines[gMeme.selectedLineIdx].dimensionMap = { yUp, yDown: pos.y - 2, xLeft, xRight };
+
 }
 
 function getAlign() {
@@ -67,10 +72,10 @@ function getAlign() {
             if (!gMeme.lines[gMeme.selectedLineIdx].posX) posX = 10;
             return { dir: 'start', posX, posY: gMeme.lines[gMeme.selectedLineIdx].posY };
         case 'right':
-            if (!gMeme.lines[gMeme.selectedLineIdx].posX) posX = 590;
+            if (!gMeme.lines[gMeme.selectedLineIdx].posX) posX = gSize.x - 10;
             return { dir: 'end', posX, posY: gMeme.lines[gMeme.selectedLineIdx].posY };
         case 'center':
-            if (!gMeme.lines[gMeme.selectedLineIdx].posX) posX = 590 / 2;
+            if (!gMeme.lines[gMeme.selectedLineIdx].posX) posX = gSize.x / 2;
             return { dir: 'center', posX, posY: gMeme.lines[gMeme.selectedLineIdx].posY };
     }
 }
@@ -157,7 +162,7 @@ function getCurrMemeIdx() {
 }
 
 function getTouchPos(ev) {
-    return { x: ev.touches[0].clientX - gSize.x, y: ev.touches[0].clientY - gSize.y };
+    return { x: ev.touches[0].clientX - gTouchPos.x, y: ev.touches[0].clientY - gTouchPos.y };
 }
 
 function getMousePos(ev) {
@@ -204,8 +209,9 @@ function stopDragging() {
     gMeme.lines[gMeme.selectedLineIdx].isDragable = false;
 }
 
-function getCurrMemeStarterPos(dimentions, height) {
-    [gSize.x, gSize.y] = dimentions;
+function getCurrMemeStarterPos(dimentions, height, lineWidth) {
+    [gTouchPos.x, gTouchPos.y] = dimentions;
+    [gSize.x, gSize.y] = [lineWidth, height];
     gMeme.lines[1].posY = height - 25;
 }
 

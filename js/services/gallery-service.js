@@ -78,3 +78,12 @@ function _createImgs() {
     }
     return imgs;
 }
+
+
+// const imgs = [{
+//         name: '1',
+//         url: '',
+//         words: ['bla']
+//     }
+
+// ]

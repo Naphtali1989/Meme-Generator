@@ -63,6 +63,10 @@ img {
 
 /* search-content */
 
+.main-content.edit-mode .search-content {
+    display: none;
+}
+
 .search-content {
     padding: 1rem;
     justify-content: space-between;
@@ -79,6 +83,10 @@ img {
 
 
 /* main-container */
+
+.main-content.edit-mode .file-input {
+    display: none;
+}
 
 
 /* Gallery */
@@ -102,8 +110,8 @@ img {
 }
 
 .gallery-item:hover {
-    opacity: 0.55;
-    transform: rotateZ(5deg);
+    opacity: 0.75;
+    transform: rotateZ(2deg);
 }
 
 
@@ -242,7 +250,7 @@ input[type="color"] {
 }
 
 .edit-sticker {
-    background-size: cover !important;
+    object-fit: fill;
     width: 60px;
     height: 60px;
     margin: 0.25rem;
@@ -250,7 +258,7 @@ input[type="color"] {
 }
 
 .edit-sticker:hover {
-    transform: rotate(3deg);
+    transform: rotate(2deg);
     box-shadow: 0px -2px 6px 2px rgba(68, 63, 63, 0.568);
 }
 

@@ -48,8 +48,9 @@
             </section>
 
             <section class="main-editor">
-
-                <canvas id="my-canvas" width="500" height="500" onmousedown="onStartDragging(event)" onmousemove="onDragLine(event)" onmouseup="onStopDragging(event)" ontouchstart="onHandleTouch(event)" ontouchmove="onDragLine(event)"></canvas>
+                <div class="canvas-container">
+                    <canvas id="my-canvas" onmousedown="onStartDragging(event)" onmousemove="onDragLine(event)" onmouseup="onStopDragging(event)" ontouchstart="onHandleTouch(event)" ontouchmove="onTouchDragLine(event)"></canvas>
+                </div>
 
                 <div class="canvas-controls flex column">
                     <input type="text" name="editor-text" onchange="onEditText(this.value)" oninput="onEditText(this.value)" placeholder="Make your meme!">
@@ -67,25 +68,35 @@
                         <button class="clean-btn btn change-txt-btn" onclick="onChangeAlign('center')"><img src="img/ICONS/center-text-alignment.png" alt=""></button>
                         <button class="clean-btn btn change-txt-btn" onclick="onChangeAlign('right')"><img src="img/ICONS/align-to-right.png" alt=""></button>
                     </section>
-                    <section class="change-txt-deco-btns">
+                    <section class="change-txt-deco-btns flex">
                         <select name="font-family" id="font-family-picker" class="clean-btn btn change-txt-color-btn" onchange="onChangeFontFam(this.value)">
                             <option value="Impact">Impact</option>
                             <option value="Ariel">Ariel</option>
+                            <option value="Comic-Sans">Comic-Sans</option>
+                            <option value="Rubic">Rubic</option>
+                            <option value="Roboto">Roboto</option>
                         </select>
 
                         <label for="user-s-color-input" class="clean-btn btn change-txt-color-btn s-color-btn">
-                            <img src="img/ICONS/text stroke.png" alt="" class="clean-btn btn change-txt-color-btn s-color-btn">
                             <input type="color" id="user-s-color-input" class="color-input" onchange="onChangeSColor(this.value)" value="#fff">
+                            <img src="img/ICONS/text stroke.png" alt="" class="clean-btn btn change-txt-color-btn s-color-btn">
                         </label>
                         <label for="user-f-color-input" class="clean-btn btn change-txt-color-btn f-color-btn">
-                            <img src="img/ICONS/paint-board-and-brush.png" class="clean-btn btn change-txt-color-btn f-color-btn" alt="">
                             <input type="color" id="user-f-color-input" class="color-input" onchange="onChangeFColor(this.value)" value="#000">
+                            <img src="img/ICONS/paint-board-and-brush.png" class="clean-btn btn change-txt-color-btn f-color-btn" alt="">
                         </label>
 
                     </section>
-                    <section class="sticker-picker">
-                        <!-- WIP - bonus -->
+
+                    <section class="sticker-section flex">
+                        <button class="btn clean-btn pagination-btn prev-page" onclick="onChangeStickerPage()">«</button>
+                        <section class="sticker-picker flex">
+
+                            <!-- WIP - bonus -->
+                        </section>
+                        <button class="btn clean-btn pagination-btn next-page" onclick="onChangeStickerPage()">»</button>
                     </section>
+
                     <section class="social-btns flex">
                         <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(this, event)">
                             <input name="img" id="imgData" type="hidden" />

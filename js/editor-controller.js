@@ -11,17 +11,18 @@ function openEditor() {
     elContainer.classList.add('edit-mode');
 }
 
-function onInitCanvas() {
-    gCanvas = document.querySelector('#my-canvas');
-    gCtx = gCanvas.getContext('2d');
-
-}
-
 function onInitEditor(id) {
     getCurrMeme(id);
     onInitCanvas();
     resizeCanvas(id);
+    renderStickers();
     onDrawMeme();
+}
+
+function onInitCanvas() {
+    gCanvas = document.querySelector('#my-canvas');
+    gCtx = gCanvas.getContext('2d');
+
 }
 
 function resizeCanvas(id) {
@@ -29,7 +30,9 @@ function resizeCanvas(id) {
     gCanvas.width = 600;
     if (!elImg) gCanvas.height = 600;
     else gCanvas.height = (gCanvas.width * elImg.naturalHeight) / elImg.naturalWidth;
-    getCurrMemeStarterPos(gCanvas.width, gCanvas.height);
+    var dimentions = [gCanvas.getBoundingClientRect().left, gCanvas.getBoundingClientRect().top];
+    var height = gCanvas.getBoundingClientRect().height;
+    getCurrMemeStarterPos(dimentions, height);
 }
 
 function onDrawMeme() {
@@ -166,8 +169,8 @@ function onStartDragging(ev) {
 }
 
 function onDragLine(ev) {
-    if (!checkIfDraging()) return;
-    dragLine(ev);
+    var pos = getMousePos(ev);
+    dragLine(pos);
     onDrawMeme();
 }
 
@@ -181,17 +184,64 @@ function onHandleTouch(ev) {
     checkDragPos(pos);
 }
 
+function onTouchDragLine(ev) {
+    var pos = getTouchPos(ev);
+    dragLine(pos);
+    onDrawMeme();
+}
+
 function onDownloadCanvas(elLink) {
     clearOutline();
     setTimeout(() => {
         const data = gCanvas.toDataURL();
         elLink.href = data;
         elLink.download = 'meme.jpg';
-    }, 3000)
+    }, 200)
 
 }
 
 function onUploadImg(elForm, ev) {
     clearOutline();
     uploadImg(elForm, ev);
+}
+
+
+
+
+
+
+
+// Stickers - WIP
+
+function renderStickers() {
+    var stickers = getStickersToShow();
+    var strHTMLs = stickers.map(sticker => {
+        return `
+        <img src="${sticker.url}"
+        class="btn edit-sticker sticker-${sticker.id}" 
+        onclick="onAddSticker('${sticker.id}')"></div>
+        `;
+        //   <div style="background:url(${sticker.url}) center;"
+    });
+    var elStickers = document.querySelector('.sticker-picker');
+    elStickers.innerHTML = strHTMLs.join('');
+}
+
+function onAddSticker(id) {
+    var currSticker = getStickerById(id);
+    drawSticker(currSticker.url, currSticker.posX, currSticker.posY);
+    gStickersOn.push(currSticker);
+    addStickerToMeme(currSticker);
+}
+
+function drawSticker(url, x, y) {
+    var img = new Image()
+    img.src = `./${url}`;
+    img.onload = () => {
+        gCtx.drawImage(img, x, y, 60, 60);
+    }
+}
+
+function onChangeStickerPage() {
+
 }

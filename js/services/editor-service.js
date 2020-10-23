@@ -4,6 +4,7 @@ var gSize = { x: 0, y: 0 };
 var gTxtDimensions;
 var gCurrCurserPos = {};
 var gPrevCurserPos = {};
+var gStickers;
 
 var gMeme = {
     selectedImgId: '',
@@ -32,7 +33,8 @@ var gMeme = {
         posX: null,
         isDragable: false,
         dimensionMap: {},
-    }]
+    }],
+    stickers: []
 };
 
 
@@ -125,7 +127,6 @@ function changeAlign(dir) {
         case 'right':
             gMeme.lines[gMeme.selectedLineIdx].posX = 590;
             break;
-
         case 'center':
             gMeme.lines[gMeme.selectedLineIdx].posX = 590 / 2;
             break;
@@ -156,7 +157,7 @@ function getCurrMemeIdx() {
 }
 
 function getTouchPos(ev) {
-    return { x: ev.touches[0].clientX, y: ev.touches[0].clientY };
+    return { x: ev.touches[0].clientX - gSize.x, y: ev.touches[0].clientY - gSize.y };
 }
 
 function getMousePos(ev) {
@@ -164,34 +165,24 @@ function getMousePos(ev) {
 }
 
 function checkDragPos(pos) {
-
     const [offsetX, offsetY] = [pos.x, pos.y];
-
     const clickedLine = gMeme.lines.find(line => {
         return (offsetX > line.dimensionMap.xLeft &&
                 offsetX < line.dimensionMap.xRight) &&
             (offsetY < line.dimensionMap.yDown &&
                 offsetY > line.dimensionMap.yUp);
-    })
-    var idx = gMeme.lines.findIndex(line => line === clickedLine);
+    });
     if (clickedLine) {
-        gMeme.selectedLineIdx = idx;
+        gMeme.selectedLineIdx = gMeme.lines.findIndex(line => line === clickedLine);
+        clickedLine.isDragable = true;
         gPrevCurserPos.x = offsetX;
         gPrevCurserPos.y = offsetY;
-        clickedLine.isDragable = true;
     }
 }
 
-function checkIfDraging() {
-    if (gMeme.lines.length === 0 ||
-        !gMeme.lines[gMeme.selectedLineIdx].isDragable) return false;
-    return true;
-}
-
-function dragLine(ev) {
+function dragLine(pos) {
     if (gMeme.lines.length === 0 || !gMeme.lines[gMeme.selectedLineIdx].isDragable) return false;
-
-    const { offsetX, offsetY } = ev;
+    const [offsetX, offsetY] = [pos.x, pos.y];
     gCurrCurserPos.x = offsetX;
     gCurrCurserPos.y = offsetY;
     var [x, y] = getDistance()
@@ -213,9 +204,9 @@ function stopDragging() {
     gMeme.lines[gMeme.selectedLineIdx].isDragable = false;
 }
 
-function getCurrMemeStarterPos(width, height) {
-    [gSize.x, gSize.y] = [width, height];
-    gMeme.lines[1].posY = height - 15;
+function getCurrMemeStarterPos(dimentions, height) {
+    [gSize.x, gSize.y] = dimentions;
+    gMeme.lines[1].posY = height - 25;
 }
 
 function getMemeText() {
@@ -244,6 +235,82 @@ function getMemeFontSize() {
 
 
 
+
+
+
+
+
+
+// WIP - STICKERS
+
+
+// function checkMemeDragPos(ev) {
+//     if (!gIsMemeStickered) return;
+//     const { offsetX, offsetY } = ev;
+
+//     const clickedSticker = gMeme.stickers.find(sticker => {
+//         return (offsetX > sticker.posX &&
+//                 offsetX < sticker.posX + 60) &&
+//             (offsetY > sticker.posY &&
+//                 offsetY < sticker.posY + 60);
+//     })
+//     if (!clickedSticker) return;
+
+//     else if (clickedSticker) {
+//         console.log('should we drag?', clickedSticker)
+//         var idx = gMeme.stickers.findIndex(sticker => sticker === clickedSticker)
+//         gMeme.selectedStickerIdx = idx
+//         gPrevStickerPos.x = offsetX;
+//         gPrevStickerPos.y = offsetY;
+//         clickedSticker.isDragable = true;
+//         gIsStickerDragging = true;
+//     }
+// }
+
+
+// function dragSticker(ev) {
+//     console.log(gMeme.stickers.length)
+
+//     if (gMeme.stickers.length === 0 || !gMeme.stickers[gMeme.selectedStickerIdx].isDragable) return false;
+
+//     const { offsetX, offsetY } = ev;
+//     gPrevStickerPos.x = offsetX;
+//     gPrevStickerPos.y = offsetY;
+//     var [x, y] = getDistance();
+//     changePosX(x);
+//     changePosY(y);
+//     gPrevStickerPos.x = offsetX;
+//     gPrevStickerPos.y = offsetY;
+// }
+
+
+function getCurrStickerLocation(id) {
+    var currSticker = getStickerById(id);
+    // console.log(currSticker)
+    return
+}
+
+function getStickersToShow() {
+    var stickers = _createStickers();
+    gStickers = stickers;
+    return stickers;
+}
+
+function getStickerById(id) {
+    return gStickers.find(sticker => sticker.id === id);
+}
+
+function addStickerToMeme(sticker) {
+    gMeme.stickers.push(sticker);
+    gIsMemeStickered = true;
+}
+
+
+
+
+
+
+
 // Private functions. please do not touch
 function _createNewMemeLine() {
     return {
@@ -252,11 +319,29 @@ function _createNewMemeLine() {
         size: 48,
         font: 'Impact',
         align: 'center',
-        color: 'red',
+        color: 'black',
         fillColor: 'white',
         posY: 50,
         posX: null,
         isDragable: false,
         dimensionMap: {},
+    }
+}
+
+function _createStickers() {
+    var stickers = [];
+    for (let i = 0; i < 4; i++) {
+        stickers.push(_createSticker(`img/ICONS/canvas-stickers/${i+1}.png`));
+    }
+    return stickers;
+}
+
+function _createSticker(url) {
+    return {
+        id: makeId(20),
+        url,
+        posX: 220,
+        posY: 220,
+        isDragable: false
     }
 }

@@ -85,8 +85,10 @@ body.rtl .main-navbar>* li:not(:last-child) {
     margin-inline-start: 1rem;
 }
 
-.lang-select-btn>* {
-    background-color: transparent;
+.lang-select-btn-en {
+    background-color: white;
+    cursor: pointer;
+    width: 120px;
 }
 
 

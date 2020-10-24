@@ -27,7 +27,7 @@ var gTrans = {
     },
     'lang-select-header': {
         he: 'שפה',
-        en: 'Language:'
+        en: 'Language'
     },
     'meme-editor-txt': {
         he: 'כתוב את מימך כאן!',

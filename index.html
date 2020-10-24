@@ -4,78 +4,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naphtali's Memer</title>
+    <title data-trans="title">Naphtali's Memer</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body onload="onInitPage()" onresize="onResizeCanvas()">
     <header class="main-header flex">
-        <div class="main-logo">Naphtali's Memer</div>
-        <nav class="main-navbar flex">
-            <ul class="nav-list clean-list flex">
-                <li>
-                    <a class="clean-btn btn navbar-btn" href="#" class="clean-link" onclick="onOpenGallery()">Gallery</a>
-                </li>
-                <!-- <li>
-                    <a class="clean-btn btn navbar-btn" href="#" class="clean-link" onclick="onOpenSavedGallery()">Saved Memes</a>
-                </li> -->
-                <li>
-                    <a class="clean-btn btn navbar-btn" href="#" class="clean-link">About</a>
-                </li>
-            </ul>
-        </nav>
+            <div class="main-logo" data-trans="title">Naphtali's Memer</div>
+            <nav class="main-navbar flex">
+                <ul class="nav-list clean-list flex">
+                    <li>
+                        <a data-trans="gallery-btn" class="clean-btn btn navbar-btn" href="#" class="clean-link" onclick="onOpenGallery()">Gallery</a>
+                    </li>
+                    <li>
+                        <a data-trans="saved-memes-btn" class="clean-btn btn navbar-btn" href="#" class="clean-link" onclick="onOpenSavedGallery()">Saved Memes</a>
+                    </li>
+                    <li>
+                        <a data-trans="about-btn" class="clean-btn btn navbar-btn" href="#" class="clean-link">About</a>
+                    </li>
+                </ul>
+                <div class="lang-changer">
+                    <h5 data-trans="lang-select-header">Language:</h5>
+                    <select name="lang-options" class="lang-options" onchange="onSetLang(this.value)">
+                        <option value="en">English</option>
+                        <option value="he">עברית</option>
+                    </select>
+                </div>
+            </nav>
+ 
     </header>
 
     <main class="main-content flex column">
         <section class="search-content flex">
             <div class="search-bar">
-                <input type="search" id="search-bar" name="search-bar" class="search-bar" placeholder="search">
+                <input data-trans="search" type="search" id="search-bar" name="search-bar" class="search-bar" placeholder="search">
                 <label for="search-bar">
-                    <button class="clean-btn btn search-btn" onclick="onSetSearch()">Search</button>
+                    <button class="clean-btn btn search-btn" onclick="onSetSearch()"><img src="img/ICONS/search-icon.png" alt=""></button>
                 </label>
             </div>
             <div class="search-words">
                 <span class="search-words-container"></span>
-                <button class="clean-btn btn show-more-words-btn" onclick="renderFullSearchBar()">More...</button>
+                <button data-trans="show-more-btn" class="clean-btn btn show-more-words-btn" onclick="renderFullSearchBar()">More...</button>
             </div>
         </section>
 
         <div class="main-content-container flex column">
-
-            <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)" />
+            
+            <input type="file" class="file-input btn" name="image" onchange="onImgInput(event)"/>
 
             <section class="main-gallery grid">
             </section>
 
-            <section class="main-editor">
+            <section class="main-editor ">
                 <div class="canvas-container">
                     <canvas id="my-canvas" onmousedown="onStartDragging(event)" onmousemove="onDragLine(event)" onmouseup="onStopDragging(event)" ontouchstart="onHandleTouch(event)" ontouchmove="onTouchDragLine(event)"></canvas>
                 </div>
 
-                <div class="canvas-controls flex column">
-                    <input type="text" name="editor-text" onchange="onEditText(this.value)" oninput="onEditText(this.value)" placeholder="Make your meme!">
-                    <section class="change-pos-btns">
+                <div class="canvas-controls flex column space-between">
+                    <input data-trans="meme-editor-txt" type="text" name="editor-text" onchange="onEditText(this.value)" oninput="onEditText(this.value)" placeholder="Write your meme here!">
+                    <section class="change-pos-btns flex space-between">
                         <button class="clean-btn btn control-btn" onclick="onChangePosY(-10)"><img src="img/ICONS/up-arrow.png" alt=""></button>
                         <button class="clean-btn btn control-btn" onclick="onChangePosY(10)"><img src="img/ICONS/down-arrow.png" alt=""></button>
                         <button class="clean-btn btn control-btn" onclick="onChangeLines(1)"><img src="img/ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
                         <button class="clean-btn btn control-btn" onclick="onAddLine()"><img src="img/ICONS/add.png" alt=""></button>
                         <button class="clean-btn btn control-btn" onclick="onDeleteLine()"><img src="img/ICONS/trash.png" alt=""></button>
                     </section>
-                    <section class="change-txt-btns">
-                        <button class="clean-btn btn change-txt-btn" onclick="onChangeFontSize(1)"><img src="img/ICONS/increase font - icon.png" alt=""></button>
-                        <button class="clean-btn btn change-txt-btn" onclick="onChangeFontSize(-1)"><img src="img/ICONS/decrease font - icon.png" alt=""></button>
+                    <section class="change-txt-btns flex space-between">
+                        <button class="clean-btn btn change-txt-btn" onclick="onChangeFontSize(2)"><img src="img/ICONS/increase font - icon.png" alt=""></button>
+                        <button class="clean-btn btn change-txt-btn" onclick="onChangeFontSize(-2)"><img src="img/ICONS/decrease font - icon.png" alt=""></button>
                         <button class="clean-btn btn change-txt-btn" onclick="onChangeAlign('left')"><img src="img/ICONS/align-to-left.png" alt=""></button>
                         <button class="clean-btn btn change-txt-btn" onclick="onChangeAlign('center')"><img src="img/ICONS/center-text-alignment.png" alt=""></button>
                         <button class="clean-btn btn change-txt-btn" onclick="onChangeAlign('right')"><img src="img/ICONS/align-to-right.png" alt=""></button>
                     </section>
-                    <section class="change-txt-deco-btns flex">
+                    <section class="change-txt-deco-btns flex space-between">
                         <select name="font-family" id="font-family-picker" class="clean-btn btn change-txt-color-btn" onchange="onChangeFontFam(this.value)">
                             <option value="Impact">Impact</option>
                             <option value="Arial">Arial</option>
                             <option value="Courier">Courier</option>
                             <option value="Helvetica">Helvetica</option>
                             <option value="Georgia">Georgia</option>
-                            <option value="fantasy">Fantasy</option>
                             <option value="Cursive">Cursive</option>
                         </select>
 
@@ -91,34 +98,35 @@
                     </section>
 
                     <section class="sticker-section flex">
-                        <button class="btn clean-btn pagination-btn prev-page" onclick="onChangeStickerPage()">«</button>
+                        <button class="btn clean-btn pagination-btn prev-page" onclick="onChangeStickerPage(-1)">«</button>
                         <section class="sticker-picker flex">
 
-                            <!-- WIP - bonus -->
                         </section>
-                        <button class="btn clean-btn pagination-btn next-page" onclick="onChangeStickerPage()">»</button>
+                        <button class="btn clean-btn pagination-btn next-page" onclick="onChangeStickerPage(1)">»</button>
                     </section>
 
-                    <section class="social-btns flex">
+                    <section class="social-btns flex column">
                         <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(this, event)">
                             <input name="img" id="imgData" type="hidden" />
-                            <button class="btn" type="submit">Share</button>
+                            <button data-trans="share-btn" class="btn" type="submit">Share</button>
                             <div class="share-container"></div>
                         </form>
-                        <button class="btn save-btn">Save</button>
-                        <a href="#" class="btn download-btn" onclick="onDownloadCanvas(this)" download="">Download</a>
+                        <button data-trans="save-btn" class="btn save-btn" onclick="onSaveCanvas()">Save</button>
+                        <a data-trans="download-btn" href="#" class="btn download-btn" onclick="onDownloadCanvas(this)" download="">Download</a>
                     </section>
                 </div>
             </section>
         </div>
 
     </main>
-    <footer class="main-footer flex">
+    <footer data-trans="footer" class="main-footer flex">
         <small>Made by Naphtali Rubin - Ninja programming cadet at the Coding Academy &copy;</small>
     </footer>
 
+    <script src="js/services/meme-service.js"></script>
     <script src="js/services/storage-service.js"></script>
     <script src="js/services/util-service.js"></script>
+    <script src="js/services/lang-service.js"></script>
     <script src="js/services/upload-service.js"></script>
     <script src="js/services/gallery-service.js"></script>
     <script src="js/services/editor-service.js"></script>

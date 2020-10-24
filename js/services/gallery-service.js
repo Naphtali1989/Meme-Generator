@@ -14,6 +14,7 @@ var gKeywords = searchWords.reduce((acc, word) => {
     acc[word] = 1;
     return acc
 }, {});
+var gMemes;
 
 
 function getImgsToShow() {
@@ -24,7 +25,7 @@ function getImgsToShow() {
 }
 
 function getImgById(id) {
-    return gImgs.find(img => img.id === id)
+    return gImgs.find(img => img.id === id);
 }
 
 function setSearch(value) {
@@ -32,7 +33,9 @@ function setSearch(value) {
 }
 
 function getSearchWords() {
-    return Object.entries(gKeywords);
+    var keywords = Object.entries(gKeywords);
+    keywords.sort((a, b) => b[1]-a[1]);
+    return keywords;
 }
 
 function loadImageFromInput(ev) {
@@ -41,7 +44,6 @@ function loadImageFromInput(ev) {
 
     reader.onload = function(event) {
         var img = new Image();
-        // img.onload = onImageReady.bind(null, img)
         img.src = event.target.result;
 
         var randWords = [];
@@ -49,12 +51,31 @@ function loadImageFromInput(ev) {
             randWords.push(searchWords[getRandomInt(0, 5)])
         }
         gImgs.push(_createImg(img.src, randWords));
-        console.log(img)
         img.onload = onInitEditor.bind(null, img.id)
     }
     reader.readAsDataURL(ev.target.files[0]);
     console.log(gImgs)
 }
+
+function getSavedMemesToShow(){
+    var memes = getSavedMemes();
+    gMemes = memes;
+    return memes;
+}
+
+function getSavedMemeById(id){
+    return gMemes.find(meme=>meme.id === id)
+}
+function getImgByUrl(url){
+return gImgs.find(img => img.url === url)
+}
+function openSavedEditor(id){
+    var currMeme = getSavedMemeById(id);
+    var img = getImgByUrl(currMeme.img.url)
+    setSavedMeme(currMeme);
+    onInitEditor(img.id);
+}
+
 
 
 
@@ -69,7 +90,7 @@ function _createImg(url, keywords) {
 
 function _createImgs() {
     var imgs = [];
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 123; i++) {
         var randWords = [];
         for (let i = 0; i < getRandomInt(0, 5); i++) {
             randWords.push(searchWords[getRandomInt(0, 5)])
@@ -79,11 +100,3 @@ function _createImgs() {
     return imgs;
 }
 
-
-// const imgs = [{
-//         name: '1',
-//         url: '',
-//         words: ['bla']
-//     }
-
-// ]

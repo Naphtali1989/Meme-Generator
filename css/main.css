@@ -3,19 +3,27 @@
     src: url(../fonts/mont/Montserrat-Regular.ttf);
 }
 
+@font-face{
+    font-family: Rubik;
+    src: url(../fonts/rubik/Rubik-Regular.ttf);
+}
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: montse;
+    font-family: montse, Rubik, Helvetica, cursive, Arial,  sans-serif;
+}
+
+body.rtl{
+    direction: rtl;
 }
 
 img {
     max-width: 100%;
 }
-
 
 /* header */
 
@@ -46,7 +54,7 @@ img {
 
 .main-navbar>* a:hover {
     color: #000;
-    font-weight: bold;
+
     box-shadow: inset 0 -6px 0 rgba(90, 87, 87, 0.75);
 }
 
@@ -60,11 +68,23 @@ img {
     border-right: 1px solid #8a8a8a;
 }
 
+body.rtl .main-navbar>* li:not(:last-child){
+    border-right: none;
+    border-left: 1px solid #8a8a8a;
+}
+
 
 /* search-content */
 
 .main-content.edit-mode .search-content {
     display: none;
+}
+
+.search-btn{
+    background: transparent;
+    outline: none;
+    border: none;
+    max-width: 30px;
 }
 
 .search-content {
@@ -73,7 +93,7 @@ img {
 }
 
 .search-content>* span {
-    margin-left: 2rem;
+    margin-inline-start: 2rem;
 }
 
 .search-words .btn {
@@ -88,6 +108,9 @@ img {
     display: none;
 }
 
+.main-content-container{
+    height: 100%;
+}
 
 /* Gallery */
 
@@ -136,7 +159,7 @@ img {
 
 .canvas-controls,
 .social-btns {
-    margin: 1rem 0;
+    margin: 1rem 1rem;
 }
 
 .canvas-controls input,
@@ -151,33 +174,32 @@ img {
 .change-pos-btns,
 .change-txt-btns {
     margin-top: 1.125rem;
-}
-
-.change-pos-btns :not(:last-child),
-.change-txt-btns :not(:last-child),
-.change-txt-color-btn:not(:last-child) {
-    margin-right: 0.65rem;
+    padding-bottom: 1.125rem;
 }
 
 .control-btn,
-.change-txt-btn {
+.change-txt-btn,
+.social-btns .btn {
     background-color: #ff8f03;
     border-radius: 1rem;
     margin-top: 1.125rem;
-    width: 50px;
-    height: 50px;
+    max-width: 50px;
+    max-height: 50px;
+    padding: 0.75rem;
+    font-family: montse, Helvetica, cursive, Arial,  sans-serif;
     border: none;
     box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.75);
     transition: box-shadow 0.35s;
 }
 
 .control-btn:hover,
-.change-txt-btn:hover {
+.change-txt-btn:hover,
+.social-btns .btn:hover {
     box-shadow: 1px 0px 5px 3px rgba(0, 0, 0, 0.75), inset 0px -2px 2px 2px rgba(0, 0, 0, 0.75);
 }
 
 .control-btn:active,
-.change-txt-btn:active {
+.change-txt-btn:active, .social-btns .btn:active{
     box-shadow: inset 1px 1px 4px 2px rgba(0, 0, 0, 0.75);
 }
 
@@ -212,67 +234,63 @@ input[type="color"] {
 
 .social-btns {
     padding: 1rem;
+    text-align: center;
 }
 
 .social-btns .btn {
-    padding: 0.75rem;
-    font-family: montse;
-}
-
-.social-btns .btn {
-    background-color: #ff8f03;
-    border-radius: 1rem;
     margin-top: 1.125rem;
+    max-width: 12rem  !important;
     padding: 1rem;
     margin: 1rem;
     outline: none;
     font-size: 1.25rem;
     font-weight: bold;
-    height: 59px;
-    border: none;
-    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.75);
-    transition: box-shadow 0.35s;
-}
-
-.social-btns .btn:hover {
-    box-shadow: 1px 0px 5px 3px rgba(0, 0, 0, 0.75), inset 0px -2px 2px 2px rgba(0, 0, 0, 0.75);
-}
-
-.social-btns .btn:active {
-    box-shadow: inset 1px 1px 4px 2px rgba(0, 0, 0, 0.75);
+    color:black; 
 }
 
 
 /* Stickers - WIP */
 
 .sticker-section {
+    background-color: rgba(199, 94, 9, 0.096);
     justify-content: space-between;
+    align-items: center;
 }
 
+.sticker-picker{
+    align-items: center;
+    justify-content: center;
+    
+}
 .edit-sticker {
     object-fit: fill;
-    width: 60px;
-    height: 60px;
+    width: 40px;
+    height: 40px;
     margin: 0.25rem;
     transition: transform 0.35s, box-shadow 0.45s;
 }
 
 .edit-sticker:hover {
-    transform: rotate(2deg);
-    box-shadow: 0px -2px 6px 2px rgba(68, 63, 63, 0.568);
+    transform: rotate(3deg);
+
 }
 
 .pagination-btn {
-    font-size: 1.75rem;
-    border-radius: 50%;
-    background-color: rgba(222, 184, 135, 0.616);
-    box-shadow: 0px -2px 6px 2px rgba(0, 0, 0, 0.75);
-    transition: transform 0.35s, box-shadow 0.45s;
+    background-color: #ff8f03;
+    border-radius: 0.55rem;
+    font-size: 2rem;
+    height: 100%;
+    border: none;
+    box-shadow: 0px 0px 6px 2px rgba(0, 0, 0, 0.75);
+    transition: box-shadow 0.35s;
 }
 
 .pagination-btn:hover {
-    transform: scale(0.975);
-    box-shadow: 0px -2px 6px 2px rgba(68, 63, 63, 0.568);
+    box-shadow: 1px 0px 5px 3px rgba(0, 0, 0, 0.75), inset 0px -2px 2px 2px rgba(0, 0, 0, 0.75);
+}
+
+.pagination-btn:active {
+    box-shadow: inset 1px 1px 4px 2px rgba(0, 0, 0, 0.75);
 }
 
 
@@ -297,6 +315,7 @@ input[type="color"] {
 
 /* Helpers */
 
+
 .grid {
     display: grid;
 }
@@ -305,6 +324,9 @@ input[type="color"] {
     display: flex;
 }
 
+.space-between{
+    justify-content: space-between;
+}
 .column {
     flex-direction: column;
 }
@@ -329,7 +351,9 @@ input[type="color"] {
 @media (min-width:740px) {
     .main-content.edit-mode .main-editor {
         flex-direction: row;
+        height: 100%;
         padding: 2rem 4rem;
+        
     }
     .main-gallery {
         grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -340,28 +364,38 @@ input[type="color"] {
         width: 16rem;
     }
     .main-editor .canvas-container {
-        width: 600px;
-        max-width: 600px;
+        width: 37.5rem;
+        max-width: 37.5rem;
+
     }
     .canvas-controls {
-        margin: 0 6rem;
+        margin: 0 5rem;
+        padding: 3.5rem 3.5rem;
+        border-radius: 12px;
+        box-shadow:  0px 0px 4px 2px black;
     }
     .control-btn,
     .change-txt-btn {
         margin-top: 1.125rem;
-        width: 59px;
-        height: 59px;
+        max-width: 59px;
+        max-height: 59px;
     }
     .change-txt-deco-btns select {
         width: 12.825rem;
         margin-bottom: 2.25rem;
     }
+    .social-btns{
+        flex-direction: row;
+    }
     .social-btns .btn {
         padding: 1rem;
-        font-family: montse;
     }
     .main-content {
         padding-bottom: 100px;
+    }
+    .edit-sticker{
+        width: 60px;
+        height: 60px;
     }
     .main-footer {
         position: fixed;

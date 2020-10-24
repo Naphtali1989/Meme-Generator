@@ -17,6 +17,7 @@ function renderGallery() {
     });
     var elGallery = document.querySelector('.main-gallery');
     elGallery.innerHTML = strHTMLs.join('');
+    makeTrans();
 }
 
 function renderFullSearchBar() {
@@ -32,6 +33,7 @@ function renderFullSearchBar() {
     });
     var elSpan = document.querySelector('.search-words-container');
     elSpan.innerHTML = strHTMLs.join('');
+    makeTrans();
 }
 
 function renderSearchBar() {
@@ -49,6 +51,7 @@ function renderSearchBar() {
 
     var elSpan = document.querySelector('.search-words-container');
     elSpan.innerHTML = strHTMLs;
+    makeTrans();
 
 }
 
@@ -58,8 +61,13 @@ function onOpenEditor(imgId) {
 }
 
 function onOpenGallery() {
+    resetMeme();
     closeEditor();
     renderGallery();
+}
+function onOpenSavedGallery() {
+    closeEditor();
+    renderSavedGallery();
 }
 
 function closeEditor() {
@@ -82,3 +90,31 @@ function onSetSearch(value) {
     renderGallery();
     renderSearchBar();
 }
+
+function renderSavedGallery(){
+    const memes = getSavedMemesToShow();
+    var strHTMLs = memes.map(meme => {
+        return `
+        <img src="${meme.img.url}"
+        class="btn gallery-item item-${meme.id}" 
+        onclick="onOpenSavedMemeEditor('${meme.id}')">
+        `;
+    });
+    var elGallery = document.querySelector('.main-gallery');
+    elGallery.innerHTML = strHTMLs.join('');
+    makeTrans();
+}
+
+function onOpenSavedMemeEditor(id){
+    openSavedEditor(id);
+    openEditor();
+}
+
+function onSetLang(value){
+    setLang(value);
+    if (value === 'he') document.body.classList.add('rtl');
+    else document.body.classList.remove('rtl');
+    onInitPage();
+}
+
+    

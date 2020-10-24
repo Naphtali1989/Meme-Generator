@@ -4,6 +4,7 @@ var gCanvas;
 var gCtx;
 var gCurrIdx = 0;
 var gCurrPos;
+var gIsDragging = false;
 
 
 function openEditor() {
@@ -15,6 +16,7 @@ function onInitEditor(id) {
     getCurrMeme(id);
     onInitCanvas();
     resizeCanvas(id);
+    initStickers();
     renderStickers();
 }
 
@@ -48,15 +50,22 @@ function onDrawMeme() {
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gCanvas.width, gCanvas.height);
         gCurrPos = getPos();
-
         var linesNum = getLinesAmount();
         for (let i = 0; i < linesNum; i++) {
             var align = getAlign();
-            getTxtDimensions();
             var selectedLine = getCurrSelectedLine();
-            if (selectedLine === gCurrIdx) drawTextOutline();
-            onDrawText(align.dir, align.posX, align.posY);
-            changeLines(1);
+            var isSticker = checkIfSticker(gCurrIdx);
+            if (!isSticker) {
+                setTxtDimensions();
+                if (selectedLine === gCurrIdx) drawTextOutline();
+                onDrawText(align.dir, align.posX, align.posY);
+            } else {
+                setStickerDimensions();
+                if (selectedLine === gCurrIdx) drawStickerOutline();
+                var currSticker = getCurrSticker();
+                drawSticker(currSticker)
+            }
+            changeLines(1); 
         }
     }
 }
@@ -89,6 +98,15 @@ function drawTextOutline() {
     gCtx.fillRect(posX, gCurrPos.y - yLength + 5, xLength, yLength + 2);
 }
 
+function drawStickerOutline() {
+    gCtx.beginPath();
+    gCtx.rect(gCurrPos.x - 5, gCurrPos.y - 5, gCurrPos.size + 10, gCurrPos.size + 5);
+    gCtx.strokeStyle = 'black';
+    gCtx.stroke();
+    gCtx.fillStyle = '#ffffff60';
+    gCtx.fillRect(gCurrPos.x - 5, gCurrPos.y - 5, gCurrPos.size + 10, gCurrPos.size + 5);
+}
+
 function clearOutline() {
     var currImg = getImgById(getCurrMeme());
     var img = new Image()
@@ -99,9 +117,19 @@ function clearOutline() {
         var linesNum = getLinesAmount();
         for (let i = 0; i < linesNum; i++) {
             var align = getAlign();
-            getTxtDimensions();
-            onDrawText(align.dir, align.posX, align.posY);
-            changeLines(1);
+            
+            var isSticker = checkIfSticker(gCurrIdx);
+            if (!isSticker) {
+                setTxtDimensions();
+                
+                onDrawText(align.dir, align.posX, align.posY);
+            } else {
+                setStickerDimensions();
+              
+                var currSticker = getCurrSticker();
+                drawSticker(currSticker)
+            }
+            changeLines(1); 
         }
     }
 }
@@ -171,26 +199,30 @@ function getMemeIdx() {
 
 function onStartDragging(ev) {
     var pos = getMousePos(ev);
-    checkDragPos(pos);
+    gIsDragging = checkDragPos(pos);
 }
 
 function onDragLine(ev) {
+    if (!gIsDragging) return;
     var pos = getMousePos(ev);
     dragLine(pos);
     onDrawMeme();
 }
 
 function onStopDragging(ev) {
+    gIsDragging = false;
     stopDragging(ev);
 }
 
 function onHandleTouch(ev) {
+    if (!gIsDragging) return;
     ev.preventDefault();
     var pos = getTouchPos(ev);
     checkDragPos(pos);
 }
 
 function onTouchDragLine(ev) {
+    if (!gIsDragging) return;
     var pos = getTouchPos(ev);
     dragLine(pos);
     onDrawMeme();
@@ -203,21 +235,16 @@ function onDownloadCanvas(elLink) {
         elLink.href = data;
         elLink.download = 'meme.jpg';
     }, 200)
+}
 
+function onSaveCanvas(){
+    saveCanvas();
 }
 
 function onUploadImg(elForm, ev) {
     clearOutline();
     uploadImg(elForm, ev);
 }
-
-
-
-
-
-
-
-// Stickers - WIP
 
 function renderStickers() {
     var stickers = getStickersToShow();
@@ -232,21 +259,23 @@ function renderStickers() {
     elStickers.innerHTML = strHTMLs.join('');
 }
 
+
 function onAddSticker(id) {
     var currSticker = getStickerById(id);
-    drawSticker(currSticker.url, currSticker.posX, currSticker.posY);
-    gStickersOn.push(currSticker);
-    addStickerToMeme(currSticker);
+    addStickerToMeme(currSticker.id, currSticker.posX, currSticker.posY, currSticker.url);
+    onDrawMeme();
 }
 
-function drawSticker(url, x, y) {
+function drawSticker({ url, posX, posY, size }) {
     var img = new Image()
     img.src = `./${url}`;
     img.onload = () => {
-        gCtx.drawImage(img, x, y, 60, 60);
+        gCtx.drawImage(img, posX, posY, size, size);
     }
 }
 
-function onChangeStickerPage() {
-
+function onChangeStickerPage(diff) {
+    changeStickerPage(diff);
+    renderStickers();
 }
+

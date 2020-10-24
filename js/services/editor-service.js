@@ -166,6 +166,7 @@ function addLine() {
     sample.txt = 'Enter New Text!';
     gMeme.lines.unshift(sample);
 }
+
 function createNewMemeLine() {
     return {
         txt: 'Cant touch this',
@@ -200,7 +201,7 @@ function checkDragPos(pos) {
     const [offsetX, offsetY] = [pos.x, pos.y];
     const clickedLine = gMeme.lines.find(line => {
         return (offsetX > line.dimensionMap.xLeft &&
-            offsetX < line.dimensionMap.xRight) &&
+                offsetX < line.dimensionMap.xRight) &&
             (offsetY < line.dimensionMap.yDown &&
                 offsetY > line.dimensionMap.yUp);
     });
@@ -321,7 +322,7 @@ function createNewStickerLine(id, posX, posY, url) {
 
 function changeStickerPage(diff) {
     if (((gPageIdx * PAGE_SIZE >= gStickers.length && diff === 1) ||
-        (gPageIdx <= 1 && diff === -1))) return gPageIdx;
+            (gPageIdx <= 1 && diff === -1))) return gPageIdx;
     gPageIdx += diff;
 }
 
@@ -334,16 +335,16 @@ function saveCanvas() {
     saveToStorage(MEMES_STORAGE_KEY, memes)
 }
 
-function getSavedMemes(){
+function getSavedMemes() {
     return loadFromStorage(MEMES_STORAGE_KEY);
 }
 
-function setSavedMeme(meme){
+function setSavedMeme(meme) {
     gMeme.lines = meme.lines;
 }
 
-function resetMeme(){
-    gMeme.lines =  [{
+function resetMeme() {
+    gMeme.lines = [{
         txt: 'I never eat falafel',
         lineWidth: 1,
         size: 48,

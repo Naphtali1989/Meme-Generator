@@ -56,16 +56,23 @@ function renderSearchBar() {
 }
 
 function onOpenEditor(imgId) {
+    var elBtn = document.querySelector('.show-menu-btn');
+    elBtn.classList.remove("change");
     openEditor();
     onInitEditor(imgId);
 }
 
 function onOpenGallery() {
+    var elBtn = document.querySelector('.show-menu-btn');
+    elBtn.classList.remove("change");
     resetMeme();
     closeEditor();
     renderGallery();
 }
+
 function onOpenSavedGallery() {
+    var elBtn = document.querySelector('.show-menu-btn');
+    elBtn.classList.remove("change");
     closeEditor();
     renderSavedGallery();
 }
@@ -91,7 +98,7 @@ function onSetSearch(value) {
     renderSearchBar();
 }
 
-function renderSavedGallery(){
+function renderSavedGallery() {
     const memes = getSavedMemesToShow();
     var strHTMLs = memes.map(meme => {
         return `
@@ -105,16 +112,18 @@ function renderSavedGallery(){
     makeTrans();
 }
 
-function onOpenSavedMemeEditor(id){
+function onOpenSavedMemeEditor(id) {
     openSavedEditor(id);
     openEditor();
 }
 
-function onSetLang(value){
+function onSetLang(value) {
     setLang(value);
     if (value === 'he') document.body.classList.add('rtl');
     else document.body.classList.remove('rtl');
     onInitPage();
 }
 
-    
+function onToggleMenu(elBtn) {
+    elBtn.classList.toggle("change");
+}

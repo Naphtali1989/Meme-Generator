@@ -29,12 +29,13 @@ function getImgById(id) {
 }
 
 function setSearch(value) {
-    gSearchBy = value;
+    gSearchBy = value.toLowerCase();
+    console.log(gSearchBy)
 }
 
 function getSearchWords() {
     var keywords = Object.entries(gKeywords);
-    keywords.sort((a, b) => b[1]-a[1]);
+    keywords.sort((a, b) => b[1] - a[1]);
     return keywords;
 }
 
@@ -57,19 +58,21 @@ function loadImageFromInput(ev) {
     console.log(gImgs)
 }
 
-function getSavedMemesToShow(){
+function getSavedMemesToShow() {
     var memes = getSavedMemes();
     gMemes = memes;
     return memes;
 }
 
-function getSavedMemeById(id){
-    return gMemes.find(meme=>meme.id === id)
+function getSavedMemeById(id) {
+    return gMemes.find(meme => meme.id === id)
 }
-function getImgByUrl(url){
-return gImgs.find(img => img.url === url)
+
+function getImgByUrl(url) {
+    return gImgs.find(img => img.url === url)
 }
-function openSavedEditor(id){
+
+function openSavedEditor(id) {
     var currMeme = getSavedMemeById(id);
     var img = getImgByUrl(currMeme.img.url)
     setSavedMeme(currMeme);
@@ -90,7 +93,7 @@ function _createImg(url, keywords) {
 
 function _createImgs() {
     var imgs = [];
-    for (let i = 0; i < 123; i++) {
+    for (let i = 0; i < 108; i++) {
         var randWords = [];
         for (let i = 0; i < getRandomInt(0, 5); i++) {
             randWords.push(searchWords[getRandomInt(0, 5)])
@@ -99,4 +102,3 @@ function _createImgs() {
     }
     return imgs;
 }
-

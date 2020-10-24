@@ -65,7 +65,7 @@ function onDrawMeme() {
                 var currSticker = getCurrSticker();
                 drawSticker(currSticker)
             }
-            changeLines(1); 
+            changeLines(1);
         }
     }
 }
@@ -117,19 +117,19 @@ function clearOutline() {
         var linesNum = getLinesAmount();
         for (let i = 0; i < linesNum; i++) {
             var align = getAlign();
-            
+
             var isSticker = checkIfSticker(gCurrIdx);
             if (!isSticker) {
                 setTxtDimensions();
-                
+
                 onDrawText(align.dir, align.posX, align.posY);
             } else {
                 setStickerDimensions();
-              
+
                 var currSticker = getCurrSticker();
                 drawSticker(currSticker)
             }
-            changeLines(1); 
+            changeLines(1);
         }
     }
 }
@@ -231,13 +231,17 @@ function onTouchDragLine(ev) {
 function onDownloadCanvas(elLink) {
     clearOutline();
     setTimeout(() => {
-        const data = gCanvas.toDataURL();
-        elLink.href = data;
-        elLink.download = 'meme.jpg';
-    }, 200)
+        downloadCanvas(elLink);
+    }, 1000)
 }
 
-function onSaveCanvas(){
+function downloadCanvas(elLink) {
+    const data = gCanvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'meme.jpg';
+}
+
+function onSaveCanvas() {
     saveCanvas();
 }
 
@@ -278,4 +282,3 @@ function onChangeStickerPage(diff) {
     changeStickerPage(diff);
     renderStickers();
 }
-

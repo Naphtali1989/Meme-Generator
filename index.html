@@ -6,41 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-trans="title">Naphtali's Memer</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- <link rel="stylesheet" href="css/large/editor.css">
-    <link rel="stylesheet" href="css/large/gallery.css">
-    <link rel="stylesheet" href="css/medium/editor.css">
-    <link rel="stylesheet" href="css/medium/gallery.css">
-    <link rel="stylesheet" href="css/large/editor.css">
-    <link rel="stylesheet" href="css/large/gallery.css"> -->
 </head>
 
 <body onload="onInitPage()" onresize="onResizeCanvas()">
     <header class="main-header flex justify-center">
         <section class="header-content container flex align-center space-between">
-            <div class="main-logo" data-trans="title">Naphtali's Memer</div>
+            <div class="main-logo btn right-font" data-trans="title" onclick="onOpenGallery()">Naphtali's Memer</div>
             <div class="show-menu-btn btn" onclick="onToggleMenu(this)">
                 <div class="bar1"></div>
                 <div class="bar2"></div>
                 <div class="bar3"></div>
             </div>
             <nav class="main-navbar flex">
-                <div class="lang-changer">
-                    <label for="lang-select-btn">
-                    <h4 data-trans="lang-select-header" class="lang-select-header">Language</h4></label>
-                    <select id="lang-select-btn" class="lang-select-btn" name="lang-options" class="lang-options" onchange="onSetLang(this.value)">
-                        <option id="lang-select-btn-en" value="en" >English</option>
-                        <option id="lang-select-btn-he" value="he" >עברית</option>
-                </select>
-                </div>
-                <ul class="nav-list clean-list flex column">
+
+                <ul class="nav-list clean-list flex column ">
                     <li>
-                        <a data-trans="gallery-btn" class="clean-btn btn navbar-btn flex" href="#" class="clean-link" onclick="onOpenGallery()">Gallery</a>
+                        <a data-trans="gallery-btn" class="clean-btn btn navbar-btn flex right-font" href="#" class="clean-link" onclick="onOpenGallery()">Gallery</a>
                     </li>
                     <li>
-                        <a data-trans="saved-memes-btn" class="clean-btn btn navbar-btn flex" href="#" class="clean-link" onclick="onOpenSavedGallery()">Memes</a>
+                        <a data-trans="saved-memes-btn" class="clean-btn btn navbar-btn flex right-font" href="#" class="clean-link" onclick="onOpenSavedGallery()">Memes</a>
                     </li>
                     <li>
-                        <a data-trans="about-btn" class="clean-btn btn navbar-btn flex" href="#" class="clean-link">About</a>
+                        <a data-trans="about-btn" class="clean-btn btn navbar-btn flex right-font" href="#aboutMe" class="clean-link">About</a>
+                    </li>
+                    <li class="lang-changer">
+                        <h5 data-trans="lang-select-header" class="lang-select-header navbar-btn btn flex" onclick="onToggleLangList()">Language</h5>
+                        <ul class="clean-list lang-select-btn flex">
+                            <li class="lang-item btn right-font" onclick="onSetLang('en') ;onToggleLangList()">English</li>
+                            <li class="lang-item btn right-font" onclick="onSetLang('he') ;onToggleLangList()">עברית</li>
+                        </ul>
                     </li>
                 </ul>
             </nav>
@@ -64,7 +58,7 @@
         <div class="main-content-container flex column">
             <section class="file-upload-container container flex">
                 <input type="file" class="none btn" id="file-input-btn" name="image" onchange="onImgInput(event)" />
-                <label for="file-input-btn"><span class="file-input btn">Click here to upload an image</span></label>
+                <label for="file-input-btn"><span data-trans="file-input-btn" class="file-input btn right-font">Click here to upload an image</span></label>
             </section>
 
             <section class="main-gallery grid">
@@ -132,6 +126,33 @@
                 </div>
             </section>
         </div>
+
+        <section class="minor-container" id="aboutMe" style="padding: 1rem;">
+            <img class="mx-auto rounded-circle" src="img/mypic/profile.jpg" alt="">
+            <h2>Naphtali Rubin</h2>
+            <h5>Junior Full-Stack Programmer</h5>
+            <ul class="clean-list">
+                <li class="list-inline-item">
+                    <a href="https://www.facebook.com/naphtali.rubin">
+
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a href="https://www.linkedin.com/in/naphtali-rubin-3851b0117/">
+
+                    </a>
+                </li>
+            </ul>
+            <h4> Hi! I am Naphtali
+            </h4>
+            <p>
+                I'm a programmer in training who wishes to be the very best! Currently working on my studies with the Coding Academy course, but i have dabbled in various courses in the past. In the past, i went through a QA course with John Bryce, and started my journey
+                into the depths of high-tech.
+            </p>
+            <p>
+                I really love gaming and delving into geeky stuff, especially fantasy and science fiction. I love reading books, watching movies, binging TV shows and more! My favorites are the Warcraft universe, The Marvel universe and the Star Wars universe.
+            </p>
+        </section>
 
     </main>
     <footer data-trans="footer" class="main-footer flex align-center justify-center">

@@ -21,6 +21,10 @@ var gTrans = {
         he: 'חיפוש',
         en: 'Search'
     },
+    'file-input-btn': {
+        he: 'לחץ כאן כדי להעלות תמונה',
+        en: 'Click here to upload an image'
+    },
     'show-more-btn': {
         he: 'עוד...',
         en: 'More...'

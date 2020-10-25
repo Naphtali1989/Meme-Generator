@@ -38,3 +38,7 @@
 .none {
     display: none;
 }
+
+.right-font {
+    font-family: montse, Rubik, Helvetica, cursive, Arial, sans-serif;
+}

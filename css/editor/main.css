@@ -1,18 +1,20 @@
 .canvas-container {
-    background-color: rgba(246, 221, 166, 0.35);
+    background-color: #f4eeff;
     max-width: 100%;
     margin-bottom: 1rem;
 }
 
 .canvas-controls {
-    background-color: rgba(246, 221, 166, 0.45);
+    background-color: #f4eeff;
     max-width: 100%;
 }
 
 .txt-edit {
+    background-color: #dcd6f7;
     padding: 1rem;
     text-align: center;
-    font-size: 1.2rem;
+    color: #424874;
+    font-size: 1.75rem;
     margin-bottom: 1rem;
 }
 
@@ -25,7 +27,7 @@
 }
 
 .sticker-section {
-    background-color: rgba(246, 221, 166, 0.55);
+    background-color: #a6b1e125;
     margin-bottom: 1rem;
 }
 
@@ -37,24 +39,26 @@
 .change-txt-btn,
 .change-txt-color-btn,
 .pagination-btn {
-    background-color: rgba(190, 73, 236, 0.85);
+    background-color: #a6b1e1;
     max-height: 100%;
     max-width: 3.5rem;
     font-size: 3rem;
+    color: #000;
     border: none;
-    padding: 0.75rem;
     margin: 0 2px;
     border-radius: 3px;
 }
 
 .change-txt-font-btn {
+    background-color: #f4eeff;
+    border-color: #424874;
     font-size: 2rem;
     max-width: 12.5rem;
     flex: 1;
 }
 
 .change-txt-font-btn:focus-within {
-    background-color: rgba(190, 73, 236, 0.3);
+    background-color: #a6b1e130;
 }
 
 input[type=color] {
@@ -81,16 +85,23 @@ input[type=color] {
 .share-btn,
 .save-btn,
 .download-btn {
-    background-color: rgba(190, 73, 236, 0.85);
+    background-color: #a6b1e1;
     text-align: center;
     font-size: 1.5rem;
+    font-weight: bold;
     font-family: montse, Rubik, Helvetica, cursive, Arial, sans-serif;
-    color: rgb(255, 211, 117);
+    color: #000;
     width: 100%;
     padding: 1rem;
     margin-bottom: 0.5rem;
     border: none;
     text-decoration: none;
+}
+
+.share-btn:active,
+.save-btn:active,
+.download-btn:active {
+    background-color: #424874;
 }
 
 .share-container {
@@ -103,6 +114,7 @@ input[type=color] {
     .change-txt-color-btn,
     .pagination-btn {
         max-width: 5.5rem;
+        padding: 0.75rem;
     }
     .edit-sticker {
         max-width: 4rem;
@@ -153,6 +165,6 @@ input[type=color] {
     .share-btn:hover,
     .save-btn:hover,
     .download-btn:hover {
-        background-color: rgb(190, 73, 236);
+        background-color: #dcd6f765;
     }
 }

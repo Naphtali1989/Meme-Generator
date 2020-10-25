@@ -127,3 +127,8 @@ function onSetLang(value) {
 function onToggleMenu(elBtn) {
     elBtn.classList.toggle("change");
 }
+
+function onToggleLangList() {
+    const elList = document.querySelector('.lang-select-btn');
+    elList.classList.toggle('shown')
+}

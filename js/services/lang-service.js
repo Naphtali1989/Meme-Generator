@@ -10,8 +10,8 @@ var gTrans = {
         en: 'Gallery'
     },
     'saved-memes-btn': {
-        he: 'ממים שמורים',
-        en: 'Saved Memes'
+        he: 'ממים',
+        en: 'Memes'
     },
     'about-btn': {
         he: 'אודות',

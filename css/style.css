@@ -1,0 +1,254 @@
+@import './util/helpers.css';
+@import './gallery/main.css';
+@import './editor/main.css';
+
+/* @import './editor/medium.css' screen and (min-width:420px);
+@import './gallery/medium.css' screen and (min-width:420px);
+@import './editor/large.css' screen and (min-width:980px);
+@import './gallery/large.css' screen and (min-width:980px); */
+
+@font-face {
+    font-family: montse;
+    src: url(../fonts/mont/Montserrat-Regular.ttf);
+}
+
+@font-face {
+    font-family: rubik;
+    src: url(../fonts/rubik/Rubik-Regular.ttf);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgba(246, 221, 166, 0.25);
+    font-family: montse, Rubik, Helvetica, cursive, Arial, sans-serif;
+    margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+img {
+    width: 100%;
+}
+
+footer {
+    text-align: center;
+}
+
+.main-header,
+footer {
+    background-color: rgb(190, 73, 236);
+    width: 100%;
+    height: 80px;
+    color: rgb(246, 221, 166);
+}
+
+.header-content {
+    flex: 1;
+}
+
+.main-logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.show-menu-btn.change+.main-navbar {
+    transform: translateY(0);
+}
+
+.main-navbar {
+    background-color: rgb(190, 66, 248);
+    position: fixed;
+    flex-direction: column-reverse;
+    height: 100vh;
+    width: 85%;
+    right: 0;
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform 0.3s;
+    z-index: 2;
+}
+
+.nav-list {
+    padding-top: 60px;
+    max-height: 50%;
+}
+
+.navbar-btn {
+    width: 100%;
+    color: rgb(246, 221, 166);
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-family: montse, Rubik, Helvetica, cursive, Arial, sans-serif;
+    padding: 1.5rem 3.5rem;
+    transition: color 0.25s;
+}
+
+.navbar-btn:focus {
+    box-shadow: inset 0 -6px 0 #ff8f03;
+}
+
+.lang-changer {
+    margin: auto;
+}
+
+.main-content-container {
+    margin-bottom: 1.16rem;
+}
+
+.main-content.edit-mode .search-content {
+    display: none;
+}
+
+.search-content {
+    position: relative;
+    max-height: 150px;
+    align-items: center;
+}
+
+.search-bar {
+    display: inline-block;
+    text-align: center;
+    font-size: 1.25rem;
+    padding: 0.5rem;
+    margin: 0;
+    max-width: 10em;
+    border: none;
+    box-shadow: inset 0 -2px 0 #000000;
+}
+
+.search-btn {
+    position: absolute;
+    background-color: #fff;
+    border: none;
+    max-width: 40px;
+    transform: translateX(-101%);
+}
+
+.search-word {
+    display: inline-block;
+    margin: 1rem;
+}
+
+.main-content.edit-mode .file-input {
+    display: none;
+}
+
+.file-upload-container {
+    margin-bottom: 1rem;
+}
+
+.file-input {
+    display: flex;
+    transition: all 0.35s;
+}
+
+.container {
+    max-width: 420px;
+    margin: 1rem 1rem;
+}
+
+.main-editor {
+    display: none;
+}
+
+.main-content.edit-mode .main-editor {
+    display: flex;
+}
+
+.main-content.edit-mode .main-gallery {
+    display: none;
+}
+
+@media (max-width:980px) {
+    .bar1,
+    .bar2,
+    .bar3 {
+        position: relative;
+        width: 35px;
+        height: 5px;
+        background-color: #333;
+        margin: 6px 0;
+        transition: 0.4s;
+        z-index: 3;
+    }
+    .change .bar1 {
+        transform: rotate(-45deg) translate(-9px, 6px);
+    }
+    .change .bar2 {
+        opacity: 0;
+    }
+    .change .bar3 {
+        transform: rotate(45deg) translate(-8px, -8px);
+    }
+}
+
+@media (min-width:420px) {
+    .container {
+        max-width: 980px;
+    }
+    .main-navbar {
+        max-width: 25rem;
+    }
+    .search-content {
+        flex-direction: row;
+    }
+}
+
+@media (min-width:980px) {
+    .container {
+        max-width: 1200px;
+    }
+    .main-header {
+        height: 100px;
+    }
+    .main-navbar {
+        background-color: inherit;
+        max-width: 40rem;
+        height: 100%;
+        flex-direction: row;
+        position: relative;
+        transform: translateY(0);
+    }
+    .nav-list {
+        flex-direction: row;
+        align-items: center;
+        padding-top: 0;
+        margin: 0;
+        max-height: 100%;
+    }
+    .navbar-btn {
+        margin: 0;
+        padding: 2.22rem 2.5rem;
+    }
+    .navbar-btn:hover {
+        color: rgb(255, 174, 0);
+    }
+    .nav-list :last-child .navbar-btn {
+        padding-inline-end: 0;
+    }
+    .search-content {
+        max-height: 60px;
+    }
+    .file-input:hover {
+        background-color: rgba(232, 140, 240, 0.274);
+    }
+}
+
+@media (min-width:1200px) {
+    .container {
+        width: 1200px;
+    }
+    .main-content {
+        align-items: center;
+    }
+}

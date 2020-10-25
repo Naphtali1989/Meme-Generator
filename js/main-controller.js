@@ -41,7 +41,7 @@ function renderSearchBar() {
     var strHTMLs = '';
     for (let i = 0; i < 3; i++) {
         strHTMLs += `
-                <span class="span btn search-word search-word-${searchWords[i][0]}"
+                <span class="btn search-word search-word-${searchWords[i][0]}"
                 onclick="onSetSearch('${searchWords[i][0]}')" 
                 style="font-size:${16 + searchWords[i][1]}px;">
                 ${searchWords[i][0]}

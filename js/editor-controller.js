@@ -215,7 +215,7 @@ function onStopDragging(ev) {
 }
 
 function onHandleTouch(ev) {
-    if (!gIsDragging) return;
+    // if (!gIsDragging) return;
     ev.preventDefault();
     var pos = getTouchPos(ev);
     checkDragPos(pos);

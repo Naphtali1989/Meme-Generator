@@ -1,0 +1,158 @@
+.canvas-container {
+    background-color: rgba(246, 221, 166, 0.35);
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+.canvas-controls {
+    background-color: rgba(246, 221, 166, 0.45);
+    max-width: 100%;
+}
+
+.txt-edit {
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.change-pos-btns,
+.change-txt-btns,
+.change-txt-deco-btns {
+    margin-bottom: 1rem;
+    max-width: 100%;
+    max-height: 3.5rem;
+}
+
+.sticker-section {
+    background-color: rgba(246, 221, 166, 0.55);
+    margin-bottom: 1rem;
+}
+
+.change-txt-deco-btns {
+    position: relative;
+}
+
+.control-btn,
+.change-txt-btn,
+.change-txt-color-btn,
+.pagination-btn {
+    background-color: rgba(190, 73, 236, 0.85);
+    max-height: 100%;
+    max-width: 3.5rem;
+    font-size: 3rem;
+    border: none;
+    padding: 0.75rem;
+    margin: 0 2px;
+    border-radius: 3px;
+}
+
+.change-txt-font-btn {
+    font-size: 2rem;
+    max-width: 12.5rem;
+    flex: 1;
+}
+
+.change-txt-font-btn:focus-within {
+    background-color: rgba(190, 73, 236, 0.3);
+}
+
+input[type=color] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.edit-sticker {
+    max-width: 3rem;
+    margin: 0 0.3rem;
+}
+
+.social-btns {
+    max-width: 100%;
+    align-items: center;
+}
+
+.social-btns form {
+    width: 100%;
+}
+
+.share-btn,
+.save-btn,
+.download-btn {
+    background-color: rgba(190, 73, 236, 0.85);
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: montse, Rubik, Helvetica, cursive, Arial, sans-serif;
+    color: rgb(255, 211, 117);
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border: none;
+    text-decoration: none;
+}
+
+.share-container {
+    width: 100%;
+}
+
+@media (min-width:420px) {
+    .control-btn,
+    .change-txt-btn,
+    .change-txt-color-btn,
+    .pagination-btn {
+        max-width: 5.5rem;
+    }
+    .edit-sticker {
+        max-width: 4rem;
+    }
+    .change-pos-btns,
+    .change-txt-btns,
+    .change-txt-deco-btns {
+        max-height: 5.5rem;
+    }
+    .change-txt-font-btn {
+        max-width: 18.75rem;
+    }
+}
+
+@media (min-width:555px) {
+    .main-editor {
+        align-items: center;
+    }
+    .canvas-container {
+        max-width: 600px;
+    }
+    .canvas-controls {
+        max-width: 505px;
+        margin: 0 1rem;
+    }
+}
+
+@media (min-width:1100px) {
+    .main-editor {
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: row;
+        margin: 1rem auto !important;
+    }
+    .control-btn,
+    .change-txt-btn,
+    .change-txt-color-btn,
+    .pagination-btn,
+    .share-btn,
+    .save-btn,
+    .download-btn {
+        transition: background-color 0.3s;
+    }
+    .control-btn:hover,
+    .change-txt-btn:hover,
+    .change-txt-color-btn:hover,
+    .pagination-btn:hover,
+    .share-btn:hover,
+    .save-btn:hover,
+    .download-btn:hover {
+        background-color: rgb(190, 73, 236);
+    }
+}

@@ -93,18 +93,18 @@ function drawTextOutline() {
 
     gCtx.beginPath();
     gCtx.rect(posX, gCurrPos.y - yLength + 5, xLength, yLength + 2);
-    gCtx.strokeStyle = 'black';
+    gCtx.strokeStyle = '#424874';
     gCtx.stroke();
-    gCtx.fillStyle = '#ffffff60';
+    gCtx.fillStyle = '#42487460';
     gCtx.fillRect(posX, gCurrPos.y - yLength + 5, xLength, yLength + 2);
 }
 
 function drawStickerOutline() {
     gCtx.beginPath();
     gCtx.rect(gCurrPos.x - 5, gCurrPos.y - 5, gCurrPos.size + 10, gCurrPos.size + 5);
-    gCtx.strokeStyle = 'black';
+    gCtx.strokeStyle = '#424874';
     gCtx.stroke();
-    gCtx.fillStyle = '#ffffff60';
+    gCtx.fillStyle = '#42487460';
     gCtx.fillRect(gCurrPos.x - 5, gCurrPos.y - 5, gCurrPos.size + 10, gCurrPos.size + 5);
 }
 

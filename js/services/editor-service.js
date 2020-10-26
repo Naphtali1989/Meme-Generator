@@ -76,6 +76,7 @@ function setStickerDimensions() {
 
 function getAlign() {
     var posX = gMeme.lines[gMeme.selectedLineIdx].posX;
+    console.log(posX)
     switch (gMeme.lines[gMeme.selectedLineIdx].align) {
         case 'left':
             if (!gMeme.lines[gMeme.selectedLineIdx].posX) posX = 10;
@@ -244,7 +245,7 @@ function stopDragging() {
 function getCurrMemeStarterPos(dimentions, height, lineWidth) {
     [gTouchPos.x, gTouchPos.y] = dimentions;
     [gSize.x, gSize.y] = [lineWidth, height];
-    if (!gMeme.lines[1].posY) gMeme.lines[1].posY = height - 25;
+    if (gMeme.lines.length > 1 && !gMeme.lines[1].posY) gMeme.lines[1].posY = height - 25;
 }
 
 function getMemeText() {

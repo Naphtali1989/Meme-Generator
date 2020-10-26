@@ -203,6 +203,10 @@ footer {
     display: none;
 }
 
+.main-content.edit-mode .about-container {
+    display: none;
+}
+
 @media (max-width:980px) {
     .bar1,
     .bar2,

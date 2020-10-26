@@ -43,9 +43,7 @@ var gMeme = {
 };
 
 
-function getCurrSelectedLine() {
-    return gMeme.selectedLineIdx;
-}
+
 
 function getPos() {
     if (gMeme.lines.length === 0) return;
@@ -184,9 +182,13 @@ function createNewMemeLine() {
     }
 }
 
-function getCurrMemeIdx() {
+function getCurrSelectedLine() {
     return gMeme.selectedLineIdx;
+}
 
+function getCurrMemeLine() {
+    if (gMeme.lines[gMeme.selectedLineIdx].isSticker) return null;
+    return gMeme.lines[gMeme.selectedLineIdx].txt
 }
 
 function getTouchPos(ev) {
@@ -242,7 +244,7 @@ function stopDragging() {
 function getCurrMemeStarterPos(dimentions, height, lineWidth) {
     [gTouchPos.x, gTouchPos.y] = dimentions;
     [gSize.x, gSize.y] = [lineWidth, height];
-    gMeme.lines[1].posY = height - 25;
+    if (!gMeme.lines[1].posY) gMeme.lines[1].posY = height - 25;
 }
 
 function getMemeText() {

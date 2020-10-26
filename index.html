@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="canvas-controls flex column space-between">
-                    <input data-trans="meme-editor-txt" class="txt-edit" type="text" name="editor-text" onchange="onEditText(this.value)" oninput="onEditText(this.value)" placeholder="Write your meme here!" />
+                    <input data-trans="meme-editor-txt" id="txt-edit" class="txt-edit" type="text" name="editor-text" onchange="onEditText(this.value)" oninput="onEditText(this.value)" placeholder="Write your meme here!" />
                     <section class="change-pos-btns flex space-between">
                         <button class="clean-btn btn control-btn" onclick="onChangePosY(-10)"><img src="img/ICONS/up-arrow.png" alt=""></button>
                         <button class="clean-btn btn control-btn" onclick="onChangePosY(10)"><img src="img/ICONS/down-arrow.png" alt=""></button>
@@ -127,32 +127,35 @@
             </section>
         </div>
 
-        <section class="minor-container" id="aboutMe" style="padding: 1rem;">
-            <img class="mx-auto rounded-circle" src="img/mypic/profile.jpg" alt="">
-            <h2>Naphtali Rubin</h2>
-            <h5>Junior Full-Stack Programmer</h5>
-            <ul class="clean-list">
-                <li class="list-inline-item">
-                    <a href="https://www.facebook.com/naphtali.rubin">
+        <section class="about-container flex column" id="aboutMe" style="padding: 1rem 1rem;">
+            <img class="my-img" src="img/mypic/porfile.jpg" alt="">
+            <div>
+                <h2 data-trans="my-name">Naphtali Rubin</h2>
+                <h5 data-trans="my-occupation">Junior Full-Stack Programmer</h5>
+                <ul class="clean-list">
+                    <li class="list-inline-item">
+                        <a href="https://www.facebook.com/naphtali.rubin">
 
-                    </a>
-                </li>
-                <li class="list-inline-item">
-                    <a href="https://www.linkedin.com/in/naphtali-rubin-3851b0117/">
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="https://www.linkedin.com/in/naphtali-rubin-3851b0117/">
 
-                    </a>
-                </li>
-            </ul>
-            <h4> Hi! I am Naphtali
-            </h4>
-            <p>
-                I'm a programmer in training who wishes to be the very best! Currently working on my studies with the Coding Academy course, but i have dabbled in various courses in the past. In the past, i went through a QA course with John Bryce, and started my journey
-                into the depths of high-tech.
-            </p>
-            <p>
-                I really love gaming and delving into geeky stuff, especially fantasy and science fiction. I love reading books, watching movies, binging TV shows and more! My favorites are the Warcraft universe, The Marvel universe and the Star Wars universe.
-            </p>
+                        </a>
+                    </li>
+                </ul>
+                <h4 data-trans="about-info-header"> Hi! I am Naphtali
+                </h4>
+                <p data-trans="about-paragraph-one">
+                    I'm a programmer in training who wishes to be the very best! Currently working on my studies with the Coding Academy course, but i have dabbled in various courses in the past. In the past, i went through a QA course with John Bryce, and started my journey
+                    into the depths of high-tech.
+                </p>
+                <p data-trans="about-paragraph-two">
+                    I really love gaming and delving into geeky stuff, especially fantasy and science fiction. I love reading books, watching movies, binging TV shows and more! My favorites are the Warcraft universe, The Marvel universe and the Star Wars universe.
+                </p>
+            </div>
         </section>
+
 
     </main>
     <footer data-trans="footer" class="main-footer flex align-center justify-center">

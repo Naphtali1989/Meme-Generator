@@ -27,6 +27,7 @@ function onInitCanvas() {
 }
 
 function resizeCanvas(id, size = 600) {
+    if (!gCanvas) return
     var elImg = document.querySelector(`.item-${id}`);
     gCanvas.width = size;
     if (!elImg) gCanvas.height = 600;
@@ -117,15 +118,12 @@ function clearOutline() {
         var linesNum = getLinesAmount();
         for (let i = 0; i < linesNum; i++) {
             var align = getAlign();
-
             var isSticker = checkIfSticker(gCurrIdx);
             if (!isSticker) {
                 setTxtDimensions();
-
                 onDrawText(align.dir, align.posX, align.posY);
             } else {
                 setStickerDimensions();
-
                 var currSticker = getCurrSticker();
                 drawSticker(currSticker)
             }
@@ -155,6 +153,7 @@ function onChangePosY(diff) {
 
 function onChangeLines(diff) {
     changeLines(diff);
+    getCurrLine();
     onDrawMeme();
 }
 
@@ -194,12 +193,15 @@ function onChangeFontFam(value) {
 }
 
 function getMemeIdx() {
-    gCurrIdx = getCurrMemeIdx();
+    gCurrIdx = getCurrSelectedLine();
 }
 
 function onStartDragging(ev) {
     var pos = getMousePos(ev);
     gIsDragging = checkDragPos(pos);
+    getMemeIdx();
+    getCurrLine();
+    onDrawMeme();
 }
 
 function onDragLine(ev) {
@@ -215,10 +217,13 @@ function onStopDragging(ev) {
 }
 
 function onHandleTouch(ev) {
-    // if (!gIsDragging) return;
     ev.preventDefault();
     var pos = getTouchPos(ev);
     checkDragPos(pos);
+    gIsDragging = checkDragPos(pos);
+    getMemeIdx();
+    getCurrLine();
+    onDrawMeme();
 }
 
 function onTouchDragLine(ev) {
@@ -281,4 +286,20 @@ function drawSticker({ url, posX, posY, size }) {
 function onChangeStickerPage(diff) {
     changeStickerPage(diff);
     renderStickers();
+}
+
+function getCurrLine() {
+    const txt = getCurrMemeLine();
+    renderCurrLine(txt);
+    focusLine();
+}
+
+function renderCurrLine(txt) {
+    const elInput = document.getElementById('txt-edit');
+    elInput.value = txt;
+}
+
+function focusLine() {
+    // document.querySelector('.txt-edit').focus();
+    document.getElementById('txt-edit').focus();
 }

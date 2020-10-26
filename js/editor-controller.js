@@ -291,15 +291,14 @@ function onChangeStickerPage(diff) {
 function getCurrLine() {
     const txt = getCurrMemeLine();
     renderCurrLine(txt);
-    focusLine();
+    setTimeout(focusLine, 1)
 }
 
 function renderCurrLine(txt) {
-    const elInput = document.getElementById('txt-edit');
+    const elInput = document.querySelector('.txt-edit');
     elInput.value = txt;
 }
 
 function focusLine() {
-    // document.querySelector('.txt-edit').focus();
-    document.getElementById('txt-edit').focus();
+    document.querySelector('.txt-edit').focus();
 }
